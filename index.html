@@ -22,11 +22,17 @@
       --purple-dark: #5E1F96;
       --purple-light: #9B59D0;
       --purple-tint: #F3ECFA;
+      --purple-glow: rgba(123, 47, 190, 0.15);
       --gold: #F0C030;
       --white: #FFFFFF;
-      --dark: #2D2D2D;
+      --dark: #1A1A2E;
       --gray: #6B7280;
-      --radius: 16px;
+      --light-gray: #F8F9FA;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow-soft: 0 4px 24px rgba(123, 47, 190, 0.08);
+      --shadow-hover: 0 20px 60px rgba(123, 47, 190, 0.18);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     html { scroll-behavior: smooth; }
@@ -41,7 +47,7 @@
 
     /* ===== ANIMATIONS ===== */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(40px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn {
@@ -50,29 +56,36 @@
     }
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-8px); }
+      50%      { transform: translateY(-10px); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
     }
     .animate {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .animate.visible {
       opacity: 1;
       transform: translateY(0);
     }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
 
     /* ===== NAV ===== */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(123,47,190,0.08);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(123, 47, 190, 0.06);
       z-index: 100;
-      padding: 14px 0;
+      padding: 16px 0;
     }
     .nav-inner {
       max-width: 1100px;
@@ -88,10 +101,12 @@
       color: var(--purple);
       letter-spacing: -0.5px;
       text-decoration: none;
+      transition: opacity var(--transition);
     }
+    .nav-logo:hover { opacity: 0.8; }
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 32px;
       list-style: none;
     }
     .nav-links a {
@@ -99,7 +114,7 @@
       color: var(--dark);
       font-weight: 700;
       font-size: 15px;
-      transition: color 0.2s;
+      transition: color var(--transition);
       position: relative;
     }
     .nav-links a::after {
@@ -108,59 +123,77 @@
       bottom: -4px;
       left: 0;
       width: 0;
-      height: 2px;
-      background: var(--purple);
-      transition: width 0.3s;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--purple), var(--purple-light));
+      border-radius: 2px;
+      transition: width 0.3s ease;
     }
     .nav-links a:hover { color: var(--purple); }
     .nav-links a:hover::after { width: 100%; }
 
     /* ===== HERO ===== */
     .hero {
-      padding: 110px 24px 50px;
+      padding: 120px 24px 60px;
       text-align: center;
-      background: var(--white);
+      background: linear-gradient(180deg, var(--white) 0%, var(--purple-tint) 50%, var(--white) 100%);
       position: relative;
       overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute;
-      top: -300px;
+      top: -200px;
       left: 50%;
       transform: translateX(-50%);
-      width: 900px;
-      height: 900px;
-      background: radial-gradient(circle, rgba(123,47,190,0.05) 0%, transparent 70%);
+      width: 1000px;
+      height: 1000px;
+      background: radial-gradient(circle, rgba(123, 47, 190, 0.06) 0%, transparent 60%);
       pointer-events: none;
     }
     .hero-logo {
-      max-width: 680px;
-      width: 90%;
+      max-width: 620px;
+      width: 85%;
       height: auto;
       position: relative;
       z-index: 1;
-      animation: fadeIn 1s ease;
+      animation: fadeIn 1s ease, float 6s ease-in-out 1s infinite;
+      filter: drop-shadow(0 8px 32px rgba(123, 47, 190, 0.12));
     }
 
     /* ===== ABOUT ===== */
     .about {
-      background: var(--purple-tint);
-      padding: 80px 24px;
+      padding: 100px 24px;
       text-align: center;
+      position: relative;
     }
     .about-inner {
       max-width: 720px;
       margin: 0 auto;
     }
-    .section-title {
-      font-size: 36px;
-      font-weight: 900;
+    .section-label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
       color: var(--purple);
-      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    .section-title span {
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .about p {
-      font-size: 18px;
+      font-size: 19px;
       color: var(--gray);
       line-height: 1.85;
       max-width: 600px;
@@ -173,12 +206,25 @@
 
     /* ===== CARDS ===== */
     .cards-section {
-      padding: 80px 24px;
-      background: var(--white);
+      padding: 80px 24px 100px;
+      background: var(--light-gray);
+      position: relative;
     }
+    .cards-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123, 47, 190, 0.12), transparent);
+    }
+    .cards-section .section-label,
     .cards-section .section-title {
       text-align: center;
-      margin-bottom: 48px;
+    }
+    .cards-section .section-title {
+      margin-bottom: 52px;
     }
     .cards-grid {
       max-width: 1000px;
@@ -189,29 +235,48 @@
     }
     .card {
       background: var(--white);
-      border: 2px solid rgba(123,47,190,0.1);
+      border: 1px solid rgba(123, 47, 190, 0.08);
       border-radius: var(--radius);
-      padding: 40px 28px 36px;
+      padding: 44px 28px 36px;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      transition: transform var(--transition), box-shadow var(--transition);
       text-decoration: none;
       color: inherit;
       display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--purple-light));
+      opacity: 0;
+      transition: opacity var(--transition);
     }
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(123,47,190,0.14);
-      border-color: rgba(123,47,190,0.3);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+    .card:hover::before {
+      opacity: 1;
     }
     .card-icon {
-      width: 68px;
-      height: 68px;
-      background: var(--purple-tint);
-      border-radius: 18px;
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, var(--purple-tint), rgba(155, 89, 208, 0.12));
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
+      margin: 0 auto 22px;
+      transition: transform var(--transition);
+    }
+    .card:hover .card-icon {
+      transform: scale(1.08);
     }
     .card h3 {
       font-size: 22px;
@@ -222,21 +287,35 @@
     .card p {
       font-size: 15px;
       color: var(--gray);
-      line-height: 1.65;
-      margin-bottom: 16px;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
     .card-cta {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       color: var(--purple);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 15px;
+      transition: gap var(--transition);
     }
-    .card-cta::after { content: ' \2192'; }
+    .card:hover .card-cta {
+      gap: 10px;
+    }
+    .card-cta svg {
+      transition: transform var(--transition);
+    }
+    .card:hover .card-cta svg {
+      transform: translateX(2px);
+    }
 
-    /* Coming Soon card */
-    .card.coming-soon {
-      border: 2px dashed rgba(123,47,190,0.22);
+    /* Featured card */
+    .card.featured {
       background: linear-gradient(160deg, var(--white) 0%, var(--purple-tint) 100%);
+      border: 2px solid rgba(123, 47, 190, 0.15);
+    }
+    .card.featured::before {
+      opacity: 1;
     }
     .badge {
       display: inline-block;
@@ -253,10 +332,20 @@
 
     /* ===== FOOTER ===== */
     footer {
-      background: var(--purple);
+      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
       color: var(--white);
-      padding: 52px 24px;
+      padding: 56px 24px;
       text-align: center;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     }
     .footer-inner {
       max-width: 800px;
@@ -311,18 +400,18 @@
       .nav-logo { font-size: 17px; }
       .nav-links { gap: 14px; }
       .nav-links a { font-size: 13px; }
-      .hero { padding: 80px 16px 28px; }
-      .hero-logo { width: 98%; max-width: 400px; }
-      .section-title { font-size: 26px; }
-      .about { padding: 48px 16px; }
+      .hero { padding: 88px 16px 36px; }
+      .hero-logo { width: 95%; max-width: 380px; }
+      .section-title { font-size: 28px; }
+      .about { padding: 64px 16px; }
       .about p { font-size: 16px; line-height: 1.75; }
-      .cards-section { padding: 48px 16px; }
-      .cards-section .section-title { margin-bottom: 32px; }
+      .cards-section { padding: 56px 16px 64px; }
+      .cards-section .section-title { margin-bottom: 36px; }
       .cards-grid { max-width: 100%; gap: 20px; }
-      .card { padding: 32px 20px 28px; }
+      .card { padding: 36px 20px 28px; }
       .card h3 { font-size: 20px; }
       .card p { font-size: 14px; }
-      footer { padding: 36px 16px; }
+      footer { padding: 40px 16px; }
       .footer-brand { font-size: 19px; }
       .footer-links { gap: 20px; }
       .footer-links a { font-size: 14px; }
@@ -331,11 +420,11 @@
       .nav-links { gap: 10px; }
       .nav-links a { font-size: 12px; }
       .nav-logo { font-size: 15px; }
-      .hero { padding: 72px 12px 24px; }
-      .about { padding: 40px 12px; }
+      .hero { padding: 76px 12px 28px; }
+      .about { padding: 48px 12px; }
       .about p { font-size: 15px; }
-      .cards-section { padding: 40px 12px; }
-      .card { padding: 28px 16px 24px; }
+      .cards-section { padding: 44px 12px 52px; }
+      .card { padding: 32px 16px 24px; }
       footer { padding: 32px 12px; }
     }
   </style>
@@ -345,11 +434,11 @@
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <a href="#" class="nav-logo">GROBE GAMES</a>
+      <a href="index.html" class="nav-logo">GROBE GAMES</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#explore">Games</a></li>
-        <li><a href="#explore">Merch</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener">Merch</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -365,11 +454,12 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="about animate" id="about">
-    <div class="about-inner">
-      <h2 class="section-title">Who We Are</h2>
+  <section class="about" id="about">
+    <div class="about-inner animate">
+      <span class="section-label">Who We Are</span>
+      <h2 class="section-title">A <span>Father &amp; Daughter</span> Game Studio</h2>
       <p>
-        We're a <span class="highlight">father &amp; daughter</span> game studio on a mission to bring more
+        We're on a mission to bring more
         <span class="highlight">joy and happiness</span> into the world &mdash; one game at a time.
         We believe play is powerful, laughter is contagious, and everyone deserves a reason to grin.
       </p>
@@ -378,25 +468,13 @@
 
   <!-- CARDS -->
   <section class="cards-section" id="explore">
-    <h2 class="section-title animate">Explore</h2>
+    <span class="section-label animate">What We Do</span>
+    <h2 class="section-title animate">Explore <span>Grobe Games</span></h2>
     <div class="cards-grid">
 
-      <!-- Merch Store -->
-      <a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener" class="card animate">
-        <div class="card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 01-8 0"/>
-          </svg>
-        </div>
-        <h3>Merch Store</h3>
-        <p>Grab some tees, stickers, and other goodies featuring our bear crew.</p>
-        <span class="card-cta">Shop Now</span>
-      </a>
-
       <!-- Our Games -->
-      <a href="#" class="card animate">
+      <a href="games.html" class="card featured animate delay-1">
+        <span class="badge">Featured</span>
         <div class="card-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="6" width="20" height="12" rx="2"/>
@@ -407,22 +485,45 @@
           </svg>
         </div>
         <h3>Our Games</h3>
-        <p>Coming to the App Store soon! Fun, family-friendly puzzles and adventures await.</p>
-        <span class="card-cta">View on App Store</span>
+        <p>Discover Photon Quest, Word Meadows, and more family-friendly puzzles and adventures.</p>
+        <span class="card-cta">
+          View Games
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
       </a>
 
-      <!-- Coming Soon -->
-      <div class="card coming-soon animate">
-        <span class="badge">Coming Soon</span>
+      <!-- Merch Store -->
+      <a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener" class="card animate delay-2">
         <div class="card-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
           </svg>
         </div>
-        <h3>Photon Quest</h3>
-        <p>A colorful light-beam puzzle adventure! Guide beams through mirrors, prisms, and magical elements.</p>
-        <span class="card-cta">Stay Tuned</span>
-      </div>
+        <h3>Merch Store</h3>
+        <p>Grab some tees, stickers, and other goodies featuring our bear crew.</p>
+        <span class="card-cta">
+          Shop Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Contact -->
+      <a href="mailto:support@grobegames.com" class="card animate delay-3">
+        <div class="card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <h3>Get in Touch</h3>
+        <p>Questions, feedback, or just want to say hi? We'd love to hear from you.</p>
+        <span class="card-cta">
+          Contact Us
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
 
     </div>
   </section>
