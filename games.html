@@ -389,22 +389,37 @@
       margin-bottom: 28px;
       font-style: italic;
     }
-    .footer-links {
+    .footer-columns {
       display: flex;
       justify-content: center;
-      gap: 36px;
+      gap: 48px;
       margin-bottom: 28px;
       flex-wrap: wrap;
+      text-align: left;
     }
-    .footer-links a {
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 140px;
+    }
+    .footer-col-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.5;
+      margin-bottom: 4px;
+    }
+    .footer-col a {
       color: var(--white);
       text-decoration: none;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       opacity: 0.9;
       transition: opacity 0.2s;
     }
-    .footer-links a:hover {
+    .footer-col a:hover {
       opacity: 1;
       text-decoration: underline;
     }
@@ -447,8 +462,8 @@
       .game-screenshot-area { max-height: 380px; }
       footer { padding: 36px 16px; }
       .footer-brand { font-size: 19px; }
-      .footer-links { gap: 20px; }
-      .footer-links a { font-size: 14px; }
+      .footer-columns { gap: 28px; }
+      .footer-col a { font-size: 13px; }
     }
     @media (max-width: 380px) {
       .nav-links { gap: 10px; }
@@ -573,11 +588,22 @@
     <div class="footer-inner">
       <div class="footer-brand">GROBE GAMES</div>
       <div class="footer-motto">Play More. Grin More.</div>
-      <div class="footer-links">
-        <a href="mailto:support@grobegames.com">Support</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="photon-light-quest/support.html">Photon Light Quest Support</a>
-        <a href="photon-light-quest/privacy-policy.html">Photon Light Quest Privacy</a>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <span class="footer-col-title">Company</span>
+          <a href="mailto:support@grobegames.com">Contact Us</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Photon Light Quest</span>
+          <a href="photon-light-quest/support.html">Support</a>
+          <a href="photon-light-quest/privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Word Meadow</span>
+          <a href="word-meadow/support.html">Support</a>
+          <a href="word-meadow/privacy-policy.html">Privacy Policy</a>
+        </div>
       </div>
       <div class="copyright">&copy; 2026 Grobe Games LLC. All rights reserved.</div>
     </div>
