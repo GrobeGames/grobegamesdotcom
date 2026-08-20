@@ -208,9 +208,9 @@
       padding-bottom: 96px;
     }
     .app-icon {
-      width: 132px;
-      height: 132px;
-      border-radius: 30px;
+      width: 168px;
+      height: 168px;
+      border-radius: 38px;
       overflow: hidden;
       margin: 0 auto 26px;
       box-shadow: 0 14px 40px rgba(31, 92, 42, 0.28), 0 0 0 5px rgba(255,255,255,0.75);
@@ -355,6 +355,50 @@
       pointer-events: none;
     }
     .grass-strip svg { width: 100%; height: 100%; display: block; }
+
+    /* ===== PIPPY ===== */
+    @keyframes pippyHover {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50%      { transform: translateY(-16px) rotate(3deg); }
+    }
+    .pippy { height: auto; pointer-events: none; }
+    .pippy-float {
+      position: absolute;
+      animation: flutter 16s ease-in-out infinite;
+      filter: drop-shadow(0 8px 14px rgba(31, 92, 42, 0.22));
+      z-index: 2;
+    }
+    .pippy-hero-1 { width: 104px; top: 176px; left: 7%;  animation-duration: 17s; }
+    .pippy-hero-2 { width: 82px;  top: 320px; right: 8%; animation-duration: 21s; animation-delay: -6s; }
+
+    /* Pippy introducing the how-to-play steps */
+    .howto-head-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: 52px;
+      flex-wrap: wrap;
+    }
+    .howto-head-wrap .section-head { margin-bottom: 0; text-align: left; }
+    .pippy-guide {
+      width: 132px;
+      flex-shrink: 0;
+      animation: pippyHover 5s ease-in-out infinite;
+      filter: drop-shadow(0 10px 18px rgba(31, 92, 42, 0.24));
+    }
+
+    /* Pippy waving from the closing CTA */
+    .cta-card { position: relative; }
+    .pippy-cta {
+      position: absolute;
+      width: 112px;
+      right: -18px;
+      top: -62px;
+      animation: pippyHover 4.4s ease-in-out infinite;
+      filter: drop-shadow(0 10px 18px rgba(31, 92, 42, 0.24));
+      z-index: 2;
+    }
 
     /* ===== PHONE MOCKUPS (shared) ===== */
     .phone {
@@ -677,7 +721,7 @@
       .nav-links a { font-size: 13px; }
       .hero { padding: 132px 16px 0; }
       .hero-inner { padding-bottom: 72px; }
-      .app-icon { width: 104px; height: 104px; border-radius: 24px; }
+      .app-icon { width: 124px; height: 124px; border-radius: 29px; }
       .hero-sub { font-size: 16px; }
       .tile { width: 40px; height: 40px; font-size: 19px; border-radius: 11px; }
       .tiles { gap: 7px; }
@@ -697,6 +741,12 @@
       .footer-col a { font-size: 13px; }
       .butterfly { font-size: 20px; }
       .bf-3 { display: none; }
+      .pippy-hero-1 { width: 62px; top: 152px; left: 3%; }
+      .pippy-hero-2 { width: 52px; top: 268px; right: 3%; }
+      .howto-head-wrap { gap: 12px; margin-bottom: 34px; }
+      .howto-head-wrap .section-head { text-align: center; }
+      .pippy-guide { width: 84px; }
+      .pippy-cta { width: 72px; right: -6px; top: -42px; }
     }
     @media (max-width: 380px) {
       .nav-links { gap: 13px; }
@@ -725,9 +775,11 @@
   <header class="hero">
     <div class="cloud cloud-1" aria-hidden="true"></div>
     <div class="cloud cloud-2" aria-hidden="true"></div>
+    <img class="pippy pippy-float pippy-hero-1" src="../pippy/fly-1.png"
+         alt="Pippy the bee, the star of Word Meadow, flying over the meadow">
+    <img class="pippy pippy-float pippy-hero-2" src="../pippy/fly-3.png" alt="" aria-hidden="true">
     <div class="butterfly bf-1" aria-hidden="true">🦋</div>
     <div class="butterfly bf-2" aria-hidden="true">🦋</div>
-    <div class="butterfly bf-3" aria-hidden="true">🐝</div>
 
     <div class="hero-inner">
       <div class="app-icon">
@@ -846,9 +898,14 @@
   <!-- HOW TO PLAY -->
   <section class="band howto" id="how-to-play">
     <div class="band-inner">
-      <div class="section-head animate">
-        <span class="section-label">How To Play</span>
-        <h2 class="section-title">Three Steps to a <span>Full Meadow</span></h2>
+      <div class="howto-head-wrap animate">
+        <img class="pippy pippy-guide" src="../pippy/stand-1.png"
+             alt="Pippy the bee, ready to explain how to play">
+        <div class="section-head">
+          <span class="section-label">How To Play</span>
+          <h2 class="section-title">Three Steps to a <span>Full Meadow</span></h2>
+          <p class="section-sub">Pippy will show you the ropes &mdash; it takes about ten seconds to learn.</p>
+        </div>
       </div>
       <div class="steps">
         <div class="step animate delay-1">
@@ -915,6 +972,8 @@
   <!-- CTA -->
   <section class="band cta" id="get-it">
     <div class="cta-card animate">
+      <img class="pippy pippy-cta" src="../pippy/stand-2.png"
+           alt="Pippy the bee waving hello">
       <h2>The Gate Opens in September 🌼</h2>
       <p>
         Word Meadow arrives on iPhone and iPad in <strong>September 2026</strong>.
@@ -978,6 +1037,20 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+    /* Pippy art is optional: hide any pose that hasn't been added yet
+       rather than showing a broken image. */
+    (function () {
+      const hide = img => { img.style.display = 'none'; };
+      const check = () => document.querySelectorAll('img.pippy').forEach(img => {
+        if (img.complete && img.naturalWidth === 0) hide(img);
+      });
+      document.querySelectorAll('img.pippy').forEach(img => {
+        img.addEventListener('error', () => hide(img));
+      });
+      check();
+      window.addEventListener('load', check);
+    })();
 
     /* Screenshots degrade gracefully. In production all ten are present and
        lazy-load normally; until they're added, the page drops the empty frames

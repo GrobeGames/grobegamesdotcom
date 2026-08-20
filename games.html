@@ -130,6 +130,28 @@
     .nav-links a.active { color: var(--purple); }
     .nav-links a.active::after { width: 100%; }
 
+    .nav-links a.nav-highlight {
+      color: #2F7A38;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a.nav-highlight::after {
+      background: linear-gradient(90deg, #2F7A38, #8FD16A);
+    }
+    .nav-links a.nav-highlight:hover { color: #1F5C2A; }
+    .nav-new {
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #4A3708;
+      background: linear-gradient(135deg, #F7C948, #E0A81C);
+      padding: 2px 7px;
+      border-radius: 20px;
+      line-height: 1.5;
+    }
+
     /* ===== PAGE HERO ===== */
     .page-hero {
       padding: 140px 24px 60px;
@@ -486,9 +508,11 @@
       nav { padding: 10px 0; }
       .nav-inner { padding: 0 16px; }
       .nav-logo { font-size: 17px; }
-      .nav-links { gap: 14px; }
+      .nav-inner { flex-direction: column; gap: 8px; }
+      .nav-links { gap: 12px; justify-content: center; flex-wrap: wrap; }
       .nav-links a { font-size: 13px; }
-      .page-hero { padding: 100px 16px 40px; }
+      .nav-new { display: none; }
+      .page-hero { padding: 124px 16px 40px; }
       .page-hero h1 { font-size: 30px; }
       .page-hero p { font-size: 17px; }
       .game-feature { padding: 48px 16px; }
@@ -504,10 +528,10 @@
       .footer-col a { font-size: 13px; }
     }
     @media (max-width: 380px) {
-      .nav-links { gap: 10px; }
-      .nav-links a { font-size: 12px; }
+      .nav-links { gap: 9px; }
+      .nav-links a { font-size: 11.5px; }
       .nav-logo { font-size: 15px; }
-      .page-hero { padding: 88px 12px 32px; }
+      .page-hero { padding: 116px 12px 32px; }
       .page-hero h1 { font-size: 26px; }
       .game-feature { padding: 40px 12px; }
       .game-info h2 { font-size: 24px; }
@@ -524,6 +548,7 @@
       <ul class="nav-links">
         <li><a href="index.html#about">About</a></li>
         <li><a href="games.html" class="active">Games</a></li>
+        <li><a href="word-meadow/index.html" class="nav-highlight">Word Meadow<span class="nav-new">New</span></a></li>
         <li><a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener">Merch</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>

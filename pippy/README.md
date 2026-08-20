@@ -1,0 +1,41 @@
+# Pippy
+
+Pippy is the bee who stars in Word Meadow. These are the cropped, transparent
+poses the website uses.
+
+## Adding the art
+
+The source files are the two green-screen sprite sheets (four poses each —
+one sheet flying, one standing). Drop them anywhere and run:
+
+```bash
+python3 tools/crop-pippy.py FLYING_SHEET.png STANDING_SHEET.png
+```
+
+That keys out the green, splits each sheet on the gaps between poses, trims
+every pose to its own bounding box, and writes this folder:
+
+```
+pippy/fly-1.png    pippy/stand-1.png
+pippy/fly-2.png    pippy/stand-2.png
+pippy/fly-3.png    pippy/stand-3.png
+pippy/fly-4.png    pippy/stand-4.png
+```
+
+Requires Pillow (`pip install Pillow`). The script drops the little sparkle
+in the sheet corner automatically — it keeps only the four largest shapes.
+
+## Where each pose is used
+
+| File           | Used on                                              |
+|----------------|------------------------------------------------------|
+| `fly-1.png`    | Homepage Word Meadow spotlight; Word Meadow hero      |
+| `fly-2.png`    | Homepage, bottom-left of the "Explore" card row       |
+| `fly-3.png`    | Word Meadow hero, right side                          |
+| `stand-1.png`  | Homepage "Who We Are"; Word Meadow "How To Play"      |
+| `stand-2.png`  | Word Meadow closing call-to-action                    |
+| `fly-4.png`, `stand-3.png`, `stand-4.png` | Spare — swap in anywhere |
+
+Every Pippy `<img>` carries `class="pippy"`. If a file is missing the page
+hides that image instead of showing a broken icon, so the site is safe to
+deploy before the art lands.
