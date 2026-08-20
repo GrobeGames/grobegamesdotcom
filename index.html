@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grobe Games - Play More. Grin More.</title>
-  <meta name="description" content="Grobe Games is a father &amp; daughter game studio on a mission to bring more joy and happiness into the world. Play More. Grin More.">
+  <meta name="description" content="Grobe Games is a father &amp; daughter game studio on a mission to bring more joy and happiness into the world. Play Photon Light Quest now, and Word Meadow from September 2026. Play More. Grin More.">
   <meta property="og:title" content="Grobe Games - Play More. Grin More.">
   <meta property="og:description" content="A father &amp; daughter game studio bringing joy and happiness into the world, one game at a time.">
   <meta property="og:image" content="https://grobegames.com/grobe-bears-logo.png">
@@ -76,7 +76,7 @@
     .delay-3 { transition-delay: 0.3s; }
 
     /* ===== NAV ===== */
-    nav {
+    body > nav {
       position: fixed;
       top: 0;
       width: 100%;
@@ -409,6 +409,108 @@
       letter-spacing: -0.3px;
     }
 
+    /* ===== WORD MEADOW BAND ===== */
+    .wm-band {
+      padding: 90px 24px;
+      background: linear-gradient(160deg, #EAF7FE 0%, #DFF3E0 55%, #F3FAEF 100%);
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(47, 122, 56, 0.10);
+    }
+    .wm-inner {
+      max-width: 940px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+    .wm-art {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 16px 44px rgba(31, 92, 42, 0.18);
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: block;
+      aspect-ratio: 4 / 3;
+    }
+    .wm-art:hover { transform: translateY(-6px); box-shadow: 0 26px 60px rgba(31, 92, 42, 0.24); }
+    .wm-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .wm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #F7C948, #E0A81C);
+      color: #4A3708;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .wm-badge svg { width: 12px; height: 12px; }
+    .wm-copy h2 {
+      font-size: 36px;
+      font-weight: 900;
+      color: #24331F;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+    .wm-copy h2 span {
+      background: linear-gradient(135deg, #2F7A38, #7FBF3F);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .wm-tagline {
+      font-size: 18px;
+      font-weight: 800;
+      color: #2F7A38;
+      margin-bottom: 14px;
+    }
+    .wm-copy p.wm-desc {
+      font-size: 16px;
+      color: #5F6B5A;
+      line-height: 1.8;
+      margin-bottom: 26px;
+    }
+    .wm-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, #4CA64C, #2F7A38);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(47, 122, 56, 0.32);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .wm-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(47, 122, 56, 0.4); }
+    .wm-sublinks {
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #5F6B5A;
+    }
+    .wm-sublinks a { color: #2F7A38; text-decoration: none; }
+    .wm-sublinks a:hover { text-decoration: underline; }
+    .wm-sublinks .sep { opacity: 0.4; margin: 0 9px; }
+
+    @media (max-width: 820px) {
+      .wm-inner { grid-template-columns: 1fr; gap: 32px; max-width: 460px; text-align: center; }
+      .wm-cta { margin: 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .wm-band { padding: 60px 16px; }
+      .wm-copy h2 { font-size: 28px; }
+      .wm-tagline { font-size: 16px; }
+      .wm-copy p.wm-desc { font-size: 15px; }
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
@@ -573,7 +675,7 @@
           <img src="photon-quest-screenshot.png" alt="Photon Light Quest crystal" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
         </div>
         <h3>Our Games</h3>
-        <p>Discover Photon Light Quest, Word Meadows, and more family-friendly puzzles and adventures.</p>
+        <p>Discover Photon Light Quest, Word Meadow, and more family-friendly puzzles and adventures.</p>
         <span class="card-cta">
           View Games
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -630,28 +732,67 @@
     </div>
   </section>
 
+  <!-- WORD MEADOW -->
+  <section class="wm-band" id="word-meadow">
+    <div class="wm-inner">
+      <a href="word-meadow/index.html" class="wm-art animate">
+        <img src="word-meadows-screenshot.png" alt="Word Meadow — a lush meadow with a flower arch over a winding stream">
+      </a>
+      <div class="wm-copy animate delay-1">
+        <span class="wm-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+          Launching September 2026
+        </span>
+        <h2>Meet <span>Word Meadow</span></h2>
+        <p class="wm-tagline">Where words bloom and brains blossom.</p>
+        <p class="wm-desc">
+          Swipe to connect hidden words and watch your garden grow with every puzzle you solve.
+          A relaxing word game with no timers, no pressure &mdash; just you, the letters, and a
+          meadow that fills with colour as you play. Coming to iPhone and iPad this September.
+        </p>
+        <a href="word-meadow/index.html" class="wm-cta">
+          Explore Word Meadow
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <div class="wm-sublinks">
+          <a href="word-meadow/support.html">Support</a>
+          <span class="sep" aria-hidden="true">&bull;</span>
+          <a href="word-meadow/privacy-policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer id="contact">
     <div class="footer-inner">
       <div class="footer-brand">GROBE GAMES</div>
       <div class="footer-motto">Play More. Grin More.</div>
-      <div class="footer-columns">
+      <nav class="footer-columns" aria-label="Site map">
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <a href="index.html">Home</a>
+          <a href="games.html">Games</a>
+          <a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener">Merch Store</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Word Meadow</span>
+          <a href="word-meadow/index.html">Game Page</a>
+          <a href="word-meadow/support.html">Support</a>
+          <a href="word-meadow/privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Photon Light Quest</span>
+          <a href="games.html#photon-light-quest">Game Page</a>
+          <a href="photon-light-quest/support.html">Support</a>
+          <a href="photon-light-quest/privacy-policy.html">Privacy Policy</a>
+        </div>
         <div class="footer-col">
           <span class="footer-col-title">Company</span>
           <a href="mailto:support@grobegames.com">Contact Us</a>
           <a href="privacy-policy.html">Privacy Policy</a>
         </div>
-        <div class="footer-col">
-          <span class="footer-col-title">Photon Light Quest</span>
-          <a href="photon-light-quest/support.html">Support</a>
-          <a href="photon-light-quest/privacy-policy.html">Privacy Policy</a>
-        </div>
-        <div class="footer-col">
-          <span class="footer-col-title">Word Meadow</span>
-          <a href="word-meadow/support.html">Support</a>
-          <a href="word-meadow/privacy-policy.html">Privacy Policy</a>
-        </div>
-      </div>
+      </nav>
       <div class="copyright">&copy; 2026 Grobe Games LLC. All rights reserved.</div>
     </div>
   </footer>
