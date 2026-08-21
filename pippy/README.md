@@ -38,10 +38,10 @@ in the sheet corner automatically — it keeps only the four largest shapes.
 |----------------|------------------------------------------------------|
 | `fly-1.png`    | Homepage Word Meadow spotlight; Word Meadow hero      |
 | `fly-2.png`    | Homepage "Explore" card row; games page hero           |
-| `fly-3.png`    | Word Meadow hero, right side                          |
-| `fly-4.png`    | Word Meadow "Your Mission" (the "Hi, I'm Pippy!" portrait); games page Word Meadow block |
-| `stand-1.png`  | Homepage "Who We Are"; Word Meadow "How To Play"      |
-| `stand-2.png`  | Word Meadow closing call-to-action                    |
+| `fly-3.png`    | Word Meadow "How To Play"                             |
+| `fly-4.png`    | Games page, Word Meadow block                         |
+| `stand-1.png`  | Homepage "Who We Are"; Word Meadow "Your Mission" — the "Hi, I'm Pippy!" portrait |
+| `stand-2.png`  | Word Meadow closing call-to-action (mirrored to face left) |
 | `stand-3.png`, `stand-4.png` | Spare — swap in anywhere               |
 
 Every Pippy `<img>` carries `class="pippy"`. If a file is missing the page
