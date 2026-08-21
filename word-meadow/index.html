@@ -494,50 +494,71 @@
     }
     .section-sub { font-size: 17px; color: var(--gray); line-height: 1.8; }
 
-    /* ===== FEATURES ===== */
-    .features { background: var(--cream); }
-    .feature-grid {
+    /* ===== MISSION ===== */
+    .mission { background: var(--cream); }
+    .mission-inner {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+      gap: 58px;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
     }
-    .feature {
-      background: #fff;
-      border: 1px solid rgba(47, 122, 56, 0.10);
-      border-radius: var(--radius);
-      padding: 34px 26px 30px;
+    .mission-pippy {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .speech-bubble {
       position: relative;
-      overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition);
+      background: #fff;
+      border: 2px solid rgba(47, 122, 56, 0.16);
+      border-radius: 20px;
+      padding: 13px 22px;
+      margin-bottom: 16px;
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--grass-deep);
+      white-space: nowrap;
+      box-shadow: 0 10px 26px rgba(31, 92, 42, 0.10);
     }
-    .feature::before {
+    .speech-bubble::before,
+    .speech-bubble::after {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--grass-light), var(--grass));
-      opacity: 0;
-      transition: opacity var(--transition);
+      top: 100%;
+      left: 50%;
+      width: 0; height: 0;
+      border-style: solid;
+      border-color: transparent;
+      border-bottom-width: 0;
     }
-    .feature:hover { transform: translateY(-7px); box-shadow: 0 20px 46px rgba(31, 92, 42, 0.14); }
-    .feature:hover::before { opacity: 1; }
-    .feature-icon {
-      width: 58px; height: 58px;
-      border-radius: 18px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 27px;
-      margin-bottom: 18px;
-      background: linear-gradient(160deg, #EAF7E4, #D6EFC9);
-      transition: transform var(--transition);
+    .speech-bubble::before {
+      margin-left: -13px;
+      border-width: 14px 13px 0;
+      border-top-color: rgba(47, 122, 56, 0.16);
     }
-    .feature:hover .feature-icon { transform: scale(1.09) rotate(-5deg); }
-    .feature h3 {
-      font-family: 'Fredoka', 'Nunito', sans-serif;
-      font-size: 20px; font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 9px;
+    .speech-bubble::after {
+      margin-left: -10px;
+      margin-top: -3px;
+      border-width: 11px 10px 0;
+      border-top-color: #fff;
     }
-    .feature p { font-size: 15px; color: var(--gray); line-height: 1.75; }
+    .pippy-mission {
+      width: 208px;
+      max-width: 80%;
+      animation: pippyHover 5.2s ease-in-out infinite;
+      filter: drop-shadow(0 10px 18px rgba(31, 92, 42, 0.24));
+    }
+    .mission-copy .section-title { margin-bottom: 18px; }
+    .mission-copy p {
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.85;
+      margin-bottom: 15px;
+    }
+    .mission-copy p:last-child { margin-bottom: 0; }
 
     /* ===== HOW TO PLAY ===== */
     .howto {
@@ -710,7 +731,12 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
-      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .mission-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        max-width: 540px;
+        text-align: center;
+      }
       .steps { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
     }
     @media (max-width: 640px) {
@@ -727,7 +753,9 @@
       .tiles { gap: 7px; }
       section.band { padding: 62px 16px; }
       .section-head { margin-bottom: 36px; }
-      .feature-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .speech-bubble { font-size: 17px; padding: 11px 18px; }
+      .pippy-mission { width: 168px; }
+      .mission-copy p { font-size: 16px; }
       .shots-rail { margin: 0 -16px; padding: 10px 16px 26px; gap: 18px; }
       .phone { width: 208px; }
       .hero-showcase { margin-top: 34px; }
@@ -813,7 +841,6 @@
           Take a Peek
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
         </a>
-        <a href="mailto:hello@grobegames.com?subject=Notify%20me%20about%20Word%20Meadow" class="btn btn-ghost">Notify Me at Launch</a>
       </div>
 
       <div class="hero-showcase" id="hero-shots" aria-label="Word Meadow gameplay">
@@ -847,48 +874,31 @@
     </div>
   </header>
 
-  <!-- FEATURES -->
-  <section class="band features" id="features">
+  <!-- MISSION -->
+  <section class="band mission" id="mission">
     <div class="band-inner">
-      <div class="section-head animate">
-        <span class="section-label">What Makes It Special</span>
-        <h2 class="section-title">A Word Game That <span>Grows On You</span></h2>
-        <p class="section-sub">
-          Relaxing enough to unwind with, clever enough to keep you coming back.
-          Word Meadow blends the joy of wordplay with the charm of a blooming garden.
-        </p>
-      </div>
-
-      <div class="feature-grid">
-        <div class="feature animate delay-1">
-          <div class="feature-icon" aria-hidden="true">🌸</div>
-          <h3>Swipe &amp; Bloom</h3>
-          <p>Connect letters with a single swipe. Every word you find bursts into flower, filling your meadow with color.</p>
+      <div class="mission-inner">
+        <div class="mission-pippy animate">
+          <div class="speech-bubble">Hi, I&rsquo;m Pippy!</div>
+          <img class="pippy pippy-mission" src="../pippy/fly-4.png"
+               alt="Pippy the bee hovering with his wings up, saying hello">
         </div>
-        <div class="feature animate delay-2">
-          <div class="feature-icon" aria-hidden="true">🌱</div>
-          <h3>Grow Your Garden</h3>
-          <p>Each puzzle you solve adds new life to your meadow. Watch it fill in, season after season, as you play.</p>
-        </div>
-        <div class="feature animate delay-3">
-          <div class="feature-icon" aria-hidden="true">🧠</div>
-          <h3>Brain-Tickling Puzzles</h3>
-          <p>Levels that start gentle and grow gradually trickier &mdash; always fair, never frustrating.</p>
-        </div>
-        <div class="feature animate delay-1">
-          <div class="feature-icon" aria-hidden="true">☁️</div>
-          <h3>Calm By Design</h3>
-          <p>No timers breathing down your neck. Soft colors, soft sounds, and all the time in the world to think.</p>
-        </div>
-        <div class="feature animate delay-2">
-          <div class="feature-icon" aria-hidden="true">🏆</div>
-          <h3>Game Center Ready</h3>
-          <p>Chase achievements and climb the leaderboards against friends and fellow meadow wanderers.</p>
-        </div>
-        <div class="feature animate delay-3">
-          <div class="feature-icon" aria-hidden="true">👨‍👩‍👧</div>
-          <h3>Family Friendly</h3>
-          <p>Built by a father-and-daughter studio for players of every age. Great for kids, grown-ups, and grandparents alike.</p>
+        <div class="mission-copy animate delay-1">
+          <span class="section-label">Your Mission</span>
+          <h2 class="section-title">Every Word You Find <span>Brings a Meadow Back</span></h2>
+          <p>
+            Pippy&rsquo;s meadows have gone quiet &mdash; grey soil, bare branches, not a petal
+            in sight. That&rsquo;s where you come in.
+          </p>
+          <p>
+            Every word you trace sends a little life back into the ground. Grass returns first,
+            then wildflowers, then whole hillsides in bloom. Solve enough puzzles and a forgotten
+            clearing becomes somewhere worth visiting again.
+          </p>
+          <p>
+            Pippy will be right there with you, buzzing encouragement and taking entirely too
+            much credit for the flowers.
+          </p>
         </div>
       </div>
     </div>
@@ -976,15 +986,11 @@
       <h2>The Gate Opens in September 🌼</h2>
       <p>
         Word Meadow arrives on iPhone and iPad in <strong>September 2026</strong>.
-        Want to know the moment it opens? Drop us a line and we'll make sure you're
-        the first one through the flower arch.
+        Five meadows, twenty zones, and one very optimistic bee will be waiting for you
+        on the other side of the flower arch.
       </p>
       <div class="hero-actions">
-        <a href="mailto:hello@grobegames.com?subject=Notify%20me%20about%20Word%20Meadow" class="btn btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Notify Me at Launch
-        </a>
-        <a href="../games.html" class="btn btn-ghost">See All Our Games</a>
+        <a href="../games.html" class="btn btn-primary">See All Our Games</a>
       </div>
       <div class="cta-links">
         <a href="support.html">Support</a>
@@ -1040,7 +1046,13 @@
     /* Pippy art is optional: hide any pose that hasn't been added yet
        rather than showing a broken image. */
     (function () {
-      const hide = img => { img.style.display = 'none'; };
+      const hide = img => {
+        img.style.display = 'none';
+        /* The mission portrait carries a speech bubble; hide the pair together
+           so a stray "Hi, I'm Pippy!" never floats on its own. */
+        const holder = img.closest('.mission-pippy');
+        if (holder) holder.style.display = 'none';
+      };
       const check = () => document.querySelectorAll('img.pippy').forEach(img => {
         if (img.complete && img.naturalWidth === 0) hide(img);
       });
