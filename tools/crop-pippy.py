@@ -86,6 +86,7 @@ def process(path, prefix):
     segments = column_segments(sheet)
 
     # Keep the four biggest blobs — drops stray sparkles/watermarks.
+    # Keep (x-position, image) so left-to-right order survives the area sort.
     frames = []
     for x0, x1 in segments:
         piece = sheet.crop((x0, 0, x1, sheet.size[1]))
@@ -93,8 +94,8 @@ def process(path, prefix):
         if not bbox:
             continue
         piece = piece.crop(bbox)
-        frames.append(piece)
-    frames.sort(key=lambda i: i.size[0] * i.size[1], reverse=True)
+        frames.append((x0, piece))
+    frames.sort(key=lambda t: t[1].size[0] * t[1].size[1], reverse=True)
     frames = frames[:4]
 
     if not frames:
@@ -102,8 +103,8 @@ def process(path, prefix):
         return 0
 
     # Restore left-to-right order among the kept frames
-    order = {id(f): i for i, f in enumerate(frames)}
-    frames.sort(key=lambda f: order[id(f)])
+    frames.sort(key=lambda t: t[0])
+    frames = [piece for _x0, piece in frames]
 
     os.makedirs(OUT_DIR, exist_ok=True)
     for i, frame in enumerate(frames, 1):

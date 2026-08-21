@@ -6,10 +6,17 @@ poses the website uses.
 ## Adding the art
 
 The source files are the two green-screen sprite sheets (four poses each —
-one sheet flying, one standing). Drop them anywhere and run:
+one sheet flying, one standing). They are kept in `raw-art/`:
+
+```
+raw-art/Pippy - Flying - Green.png
+raw-art/Pippy-4 poses - Green.png
+```
+
+To regenerate the crops from them:
 
 ```bash
-python3 tools/crop-pippy.py FLYING_SHEET.png STANDING_SHEET.png
+python3 tools/crop-pippy.py "raw-art/Pippy - Flying - Green.png" "raw-art/Pippy-4 poses - Green.png"
 ```
 
 That keys out the green, splits each sheet on the gaps between poses, trims
