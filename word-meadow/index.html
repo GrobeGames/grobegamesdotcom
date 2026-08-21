@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Meadow — A Word Game That Blooms | Grobe Games</title>
-  <meta name="description" content="Word Meadow is a relaxing word puzzle game where every flower hides a word. Swipe to connect letters, grow your garden, and wander through blooming meadows. Coming soon to iPhone and iPad.">
+  <meta name="description" content="Word Meadow is a relaxing word puzzle game where every word you find brings a faded meadow back to life. Swipe to connect letters, restore five meadows, and watch the colour return. Coming soon to iPhone and iPad.">
   <link rel="canonical" href="https://grobegames.com/word-meadow/">
   <meta property="og:title" content="Word Meadow — A Word Game That Blooms">
   <meta property="og:description" content="Swipe to connect hidden words and watch your garden grow. A relaxing word puzzle game from Grobe Games. Coming soon to iPhone and iPad.">
@@ -334,6 +334,12 @@
       0%, 100% { transform: translateY(0) rotate(-3deg); }
       50%      { transform: translateY(-16px) rotate(3deg); }
     }
+    /* Mirrored twin — the animation sets transform, so a static scaleX(-1)
+       would be overwritten. The rotate signs flip to keep the same visual tilt. */
+    @keyframes pippyHoverFlip {
+      0%, 100% { transform: scaleX(-1) translateY(0) rotate(3deg); }
+      50%      { transform: scaleX(-1) translateY(-16px) rotate(-3deg); }
+    }
     .pippy { height: auto; pointer-events: none; }
     .pippy-float {
       position: absolute;
@@ -342,7 +348,6 @@
       z-index: 2;
     }
     .pippy-hero-1 { width: 104px; top: 176px; left: 7%;  animation-duration: 17s; }
-    .pippy-hero-2 { width: 82px;  top: 320px; right: 8%; animation-duration: 21s; animation-delay: -6s; }
 
     /* Pippy introducing the how-to-play steps */
     .howto-head-wrap {
@@ -368,7 +373,7 @@
       width: 112px;
       right: -18px;
       top: -62px;
-      animation: pippyHover 4.4s ease-in-out infinite;
+      animation: pippyHoverFlip 4.4s ease-in-out infinite;
       filter: drop-shadow(0 10px 18px rgba(31, 92, 42, 0.24));
       z-index: 2;
     }
@@ -741,7 +746,6 @@
       .butterfly { font-size: 20px; }
       .bf-3 { display: none; }
       .pippy-hero-1 { width: 62px; top: 152px; left: 3%; }
-      .pippy-hero-2 { width: 52px; top: 268px; right: 3%; }
       .howto-head-wrap { gap: 12px; margin-bottom: 34px; }
       .pippy-guide { width: 84px; }
       .pippy-cta { width: 72px; right: -6px; top: -42px; }
@@ -774,7 +778,6 @@
     <div class="cloud cloud-2" aria-hidden="true"></div>
     <img class="pippy pippy-float pippy-hero-1" src="../pippy/fly-1.png"
          alt="Pippy the bee, the star of Word Meadow, flying over the meadow">
-    <img class="pippy pippy-float pippy-hero-2" src="../pippy/fly-3.png" alt="" aria-hidden="true">
     <div class="butterfly bf-1" aria-hidden="true">🦋</div>
     <div class="butterfly bf-2" aria-hidden="true">🦋</div>
 
@@ -792,9 +795,9 @@
       <h1>Word Meadow</h1>
       <p class="hero-tagline">Where words bloom and brains blossom.</p>
       <p class="hero-sub">
-        Wander through lush, whimsical meadows where every flower hides a word waiting to be
-        discovered. Swipe to connect letters, watch your garden grow, and let the puzzles
-        unwind you one bloom at a time.
+        Wander through faded, forgotten meadows and bring them back to life one word at a time.
+        Swipe to connect letters, watch the colour return, and let the puzzles unwind you one
+        bloom at a time.
       </p>
 
       <div class="hero-showcase" id="hero-shots" aria-label="Word Meadow gameplay">
@@ -923,7 +926,7 @@
   <!-- PITCH -->
   <section class="band pitch">
     <div class="pitch-inner animate">
-      <blockquote>&ldquo;Every flower hides a word waiting to be discovered.&rdquo;</blockquote>
+      <blockquote>&ldquo;Spell a word, and a little more beauty comes back to the meadow.&rdquo;</blockquote>
       <p>
         Word Meadow is a relaxing yet addictive word game from Grobe Games &mdash; a father
         &amp; daughter studio on a mission to bring more joy and happiness into the world.
