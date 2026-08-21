@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Games - Grobe Games</title>
-  <meta name="description" content="Discover games by Grobe Games — fun, family-friendly puzzles and adventures. Play Photon Light Quest now, and get ready for Word Meadow, launching September 2026.">
+  <meta name="description" content="Discover games by Grobe Games — fun, family-friendly puzzles and adventures. Word Meadow launches September 2026, and Photon Light Quest is on the App Store now.">
   <meta property="og:title" content="Our Games - Grobe Games">
   <meta property="og:description" content="Fun, family-friendly puzzles and adventures from a father &amp; daughter game studio.">
   <meta property="og:image" content="https://grobegames.com/grobe-bears-logo.png">
@@ -24,6 +24,9 @@
       --purple-tint: #F3ECFA;
       --purple-glow: rgba(123, 47, 190, 0.15);
       --gold: #F0C030;
+      --meadow: #4CA64C;
+      --meadow-deep: #2F7A38;
+      --meadow-light: #8FD16A;
       --white: #FFFFFF;
       --dark: #1A1A2E;
       --gray: #6B7280;
@@ -198,9 +201,28 @@
     .game-feature {
       padding: 80px 24px;
       position: relative;
+      overflow: hidden;
     }
-    .game-feature:nth-child(even) {
+    .game-feature.alt {
       background: var(--light-gray);
+    }
+    /* Word Meadow gets its own meadow-tinted block inside the purple house style */
+    .game-feature.meadow {
+      background: linear-gradient(180deg, #F4FBF0 0%, #E9F6E2 100%);
+      border-top: 1px solid rgba(47, 122, 56, 0.10);
+      border-bottom: 1px solid rgba(47, 122, 56, 0.10);
+    }
+    .game-feature.meadow .game-tagline { color: var(--meadow-deep); }
+    .game-feature.meadow .game-badge.coming-soon {
+      background: linear-gradient(135deg, var(--gold), #E8A820);
+      color: #4A3708;
+    }
+    .game-feature.meadow .game-cta {
+      background: linear-gradient(135deg, var(--meadow), var(--meadow-deep));
+      box-shadow: 0 4px 16px rgba(47, 122, 56, 0.32);
+    }
+    .game-feature.meadow .game-cta:hover {
+      box-shadow: 0 8px 28px rgba(47, 122, 56, 0.42);
     }
     .game-inner {
       max-width: 1000px;
@@ -372,6 +394,69 @@
       box-shadow: var(--shadow-soft);
     }
 
+    /* ===== APP ICON + TITLE ROW ===== */
+    .game-title-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .game-app-icon {
+      width: 78px;
+      height: 78px;
+      border-radius: 19px;
+      flex-shrink: 0;
+      object-fit: cover;
+      box-shadow: 0 8px 22px rgba(26, 26, 46, 0.18);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .game-title-row:hover .game-app-icon {
+      transform: rotate(-5deg) scale(1.06);
+      box-shadow: 0 14px 32px rgba(26, 26, 46, 0.26);
+    }
+    .game-title-row h2 { margin: 0; }
+
+    /* ===== FANNED PHONE TRIO ===== */
+    .phone-fan {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 0;
+    }
+    .fan-phone {
+      width: 33%;
+      max-width: 178px;
+      border: 5px solid #2B3327;
+      background: #2B3327;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(31, 92, 42, 0.24);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .fan-phone img { width: 100%; height: auto; display: block; }
+    .fan-phone:nth-child(1) { transform: rotate(-8deg) translateY(16px) scale(0.92); margin-right: -26px; z-index: 1; }
+    .fan-phone:nth-child(2) { z-index: 3; }
+    .fan-phone:nth-child(3) { transform: rotate(8deg)  translateY(16px) scale(0.92); margin-left: -26px;  z-index: 1; }
+    .fan-phone:hover { z-index: 5; box-shadow: 0 22px 54px rgba(31, 92, 42, 0.34); }
+    .fan-phone:nth-child(1):hover { transform: rotate(-8deg) translateY(4px) scale(0.97); }
+    .fan-phone:nth-child(2):hover { transform: translateY(-10px) scale(1.04); }
+    .fan-phone:nth-child(3):hover { transform: rotate(8deg)  translateY(4px) scale(0.97); }
+
+    /* ===== PIPPY ===== */
+    @keyframes beeHover {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-14px) rotate(2deg); }
+    }
+    .pippy {
+      position: absolute;
+      height: auto;
+      pointer-events: none;
+      z-index: 4;
+      filter: drop-shadow(0 10px 18px rgba(31, 92, 42, 0.24));
+      animation: beeHover 5s ease-in-out infinite;
+    }
+    .pippy-hero   { width: 92px;  top: 96px;   right: 9%;  animation-duration: 6.2s; }
+    .pippy-meadow { width: 104px; bottom: 34px; left: 4%;  animation-duration: 5.4s; animation-delay: -2s; }
+
     /* ===== APP STORE BUTTON ===== */
     .app-store-btn {
       display: inline-flex;
@@ -503,6 +588,8 @@
       }
       .page-hero h1 { font-size: 36px; }
       .game-info h2 { font-size: 32px; }
+      .pippy-hero { width: 68px; top: 104px; right: 4%; }
+      .pippy-meadow { width: 76px; bottom: 12px; left: 2%; }
     }
     @media (max-width: 600px) {
       nav { padding: 10px 0; }
@@ -522,6 +609,13 @@
       .game-description { font-size: 15px; }
       .game-features li { font-size: 14px; }
       .game-screenshot-area { max-height: 380px; }
+      .game-app-icon { width: 58px; height: 58px; border-radius: 14px; }
+      .game-title-row { gap: 13px; }
+      .fan-phone { border-width: 4px; border-radius: 18px; }
+      .fan-phone:nth-child(1) { margin-right: -18px; }
+      .fan-phone:nth-child(3) { margin-left: -18px; }
+      .pippy-hero { width: 54px; top: 128px; right: 3%; }
+      .pippy-meadow { width: 58px; bottom: 8px; left: 1%; opacity: 0.9; }
       footer { padding: 36px 16px; }
       .footer-brand { font-size: 19px; }
       .footer-columns { gap: 28px; }
@@ -557,16 +651,75 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
+    <img class="pippy pippy-hero" src="pippy/fly-2.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
     <h1>Our <span>Games</span></h1>
     <p>Fun, family-friendly puzzles and adventures crafted with love by a father &amp; daughter team.</p>
   </section>
 
-  <!-- PHOTON QUEST -->
-  <section class="game-feature" id="photon-light-quest">
+  <!-- WORD MEADOW -->
+  <section class="game-feature meadow" id="word-meadow">
+    <img class="pippy pippy-meadow" src="pippy/fly-4.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
     <div class="game-inner animate">
       <div class="game-visual">
+        <a href="word-meadow/index.html" class="phone-fan" aria-label="Word Meadow gameplay screenshots">
+          <span class="fan-phone"><img src="word-meadow/screenshots/02.png" alt="Word Meadow — the meadow path map, twenty zones of flowers waiting to be unlocked" loading="lazy"></span>
+          <span class="fan-phone"><img src="word-meadow/screenshots/01.png" alt="Word Meadow gameplay — tracing a word across the honeycomb letter board" loading="lazy"></span>
+          <span class="fan-phone"><img src="word-meadow/screenshots/03.png" alt="Word Meadow — a restored meadow under a flower arch, stream winding through it" loading="lazy"></span>
+        </a>
+      </div>
+      <div class="game-info">
+        <span class="game-badge coming-soon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+          Launching September 2026
+        </span>
+        <div class="game-title-row">
+          <img class="game-app-icon" src="word-meadow/app-icon.png"
+               alt="Word Meadow app icon — a letter W grown from sunflowers, daisies, poppies and lavender">
+          <h2>Word Meadow</h2>
+        </div>
+        <p class="game-tagline">Where words bloom and brains blossom.</p>
+        <p class="game-description">
+          Five meadows have gone quiet &mdash; grey soil, bare branches, not a petal in sight. Every word
+          you trace sends a little life back into the ground, until a forgotten clearing turns into
+          somewhere worth visiting again.
+        </p>
+        <p class="game-description">
+          Swipe across the honeycomb to spell a word, watch it blossom into place, and let Pippy the bee
+          take entirely too much credit for the flowers. No timers, no pressure &mdash; just you, the
+          letters, and twenty zones waiting their turn.
+        </p>
+        <ul class="game-features">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F7A38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Swipe-to-connect word puzzles that bloom as you solve them
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F7A38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Twenty zones and five meadows to bring back to life
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F7A38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Dress Pippy up in his closet &mdash; tuxedos, pumpkins, seasonal collections
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F7A38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            A daily puzzle, endless mode, and 47 awards to chase
+          </li>
+        </ul>
+        <a href="word-meadow/index.html" class="game-cta">
+          Explore Word Meadow
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTON LIGHT QUEST -->
+  <section class="game-feature alt" id="photon-light-quest">
+    <div class="game-inner reverse animate">
+      <div class="game-visual">
         <div class="game-screenshot-area">
-          <img src="photon-quest-screenshot.png" alt="Photon Light Quest — a glowing crystal radiating colorful beams of light">
+          <img src="photon-quest-screenshot.png" alt="Photon Light Quest — a glowing crystal radiating colorful beams of light" loading="lazy">
         </div>
       </div>
       <div class="game-info">
@@ -574,7 +727,11 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           Now Available
         </span>
-        <h2>Photon Light Quest</h2>
+        <div class="game-title-row">
+          <img class="game-app-icon" src="photon-quest-screenshot.png"
+               alt="Photon Light Quest app icon — a glowing crystal splitting light into a rainbow">
+          <h2>Photon Light Quest</h2>
+        </div>
         <p class="game-tagline">Bend light. Solve puzzles. Discover the magic of color.</p>
         <p class="game-description">
           Step into a dazzling world where light is your superpower! Tap, drag, and rotate mirrors, prisms, and
@@ -610,61 +767,6 @@
             <div class="small">Download on the</div>
             <div class="big">App Store</div>
           </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIVIDER -->
-  <div class="divider"></div>
-
-  <!-- WORD MEADOW -->
-  <section class="game-feature" id="word-meadow">
-    <div class="game-inner reverse animate">
-      <div class="game-visual">
-        <a href="word-meadow/index.html">
-          <div class="game-screenshot-area">
-            <img src="word-meadows-screenshot.png" alt="Word Meadow — a lush meadow with a flower arch, stream, and woodland creatures">
-          </div>
-        </a>
-      </div>
-      <div class="game-info">
-        <span class="game-badge coming-soon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-          Launching September 2026
-        </span>
-        <h2>Word Meadow</h2>
-        <p class="game-tagline">Where words bloom and brains blossom.</p>
-        <p class="game-description">
-          Wander through lush, whimsical meadows where every flower hides a word waiting to be discovered!
-          Swipe through letters, connect hidden words, and watch your garden grow with every puzzle you solve.
-        </p>
-        <p class="game-description">
-          Word Meadow is a relaxing yet addictive word game that blends the joy of wordplay with the charm
-          of a blooming garden. No timers, no pressure &mdash; just you, the letters, and a meadow that
-          fills with colour as you play.
-        </p>
-        <ul class="game-features">
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Swipe-to-connect word puzzles that bloom as you solve them
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            A garden that grows with every level you finish
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Relaxing by design &mdash; no timers, ever
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Game Center leaderboards and achievements
-          </li>
-        </ul>
-        <a href="word-meadow/index.html" class="game-cta">
-          Explore Word Meadow
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
     </div>

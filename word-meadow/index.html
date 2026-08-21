@@ -263,33 +263,6 @@
       margin: 0 auto 30px;
     }
 
-    /* letter tiles */
-    .tiles {
-      display: flex;
-      justify-content: center;
-      gap: 9px;
-      flex-wrap: wrap;
-      margin-bottom: 34px;
-    }
-    .tile {
-      width: 50px; height: 50px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 14px;
-      font-family: 'Fredoka', sans-serif;
-      font-weight: 700;
-      font-size: 24px;
-      color: #fff;
-      background: linear-gradient(160deg, var(--grass-light), var(--grass));
-      box-shadow: 0 5px 0 var(--grass-deep), 0 8px 18px rgba(31, 92, 42, 0.2);
-      animation: bob 3.4s ease-in-out infinite;
-    }
-    .tile:nth-child(1) { animation-delay: 0s;    background: linear-gradient(160deg, #9BD86F, #4CA64C); }
-    .tile:nth-child(2) { animation-delay: 0.12s; background: linear-gradient(160deg, #FFD86B, #E0A81C); box-shadow: 0 5px 0 #A87A0B, 0 8px 18px rgba(224,168,28,0.28); }
-    .tile:nth-child(3) { animation-delay: 0.24s; background: linear-gradient(160deg, #FF8E7A, #E8503A); box-shadow: 0 5px 0 #A8341F, 0 8px 18px rgba(232,80,58,0.26); }
-    .tile:nth-child(4) { animation-delay: 0.36s; background: linear-gradient(160deg, #C3A0F0, #8E5FD6); box-shadow: 0 5px 0 #6437A8, 0 8px 18px rgba(142,95,214,0.26); }
-    .tile:nth-child(5) { animation-delay: 0.48s; background: linear-gradient(160deg, #8ED0F2, #4E9FD6); box-shadow: 0 5px 0 #2E6FA0, 0 8px 18px rgba(78,159,214,0.26); }
-    .tile:nth-child(6) { animation-delay: 0.60s; background: linear-gradient(160deg, #F9A8D0, #E36AA8); box-shadow: 0 5px 0 #A83E75, 0 8px 18px rgba(227,106,168,0.26); }
-
     .hero-actions {
       display: flex;
       gap: 14px;
@@ -749,8 +722,6 @@
       .hero-inner { padding-bottom: 72px; }
       .app-icon { width: 124px; height: 124px; border-radius: 29px; }
       .hero-sub { font-size: 16px; }
-      .tile { width: 40px; height: 40px; font-size: 19px; border-radius: 11px; }
-      .tiles { gap: 7px; }
       section.band { padding: 62px 16px; }
       .section-head { margin-bottom: 36px; }
       .speech-bubble { font-size: 17px; padding: 11px 18px; }
@@ -778,7 +749,6 @@
     @media (max-width: 380px) {
       .nav-links { gap: 13px; }
       .nav-links a { font-size: 12px; }
-      .tile { width: 34px; height: 34px; font-size: 16px; }
       .btn { padding: 12px 20px; font-size: 15px; }
     }
   </style>
@@ -826,22 +796,6 @@
         discovered. Swipe to connect letters, watch your garden grow, and let the puzzles
         unwind you one bloom at a time.
       </p>
-
-      <div class="tiles" aria-hidden="true">
-        <span class="tile">M</span>
-        <span class="tile">E</span>
-        <span class="tile">A</span>
-        <span class="tile">D</span>
-        <span class="tile">O</span>
-        <span class="tile">W</span>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#screenshots" class="btn btn-primary">
-          Take a Peek
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-        </a>
-      </div>
 
       <div class="hero-showcase" id="hero-shots" aria-label="Word Meadow gameplay">
         <div class="phone"><img src="screenshots/02.png" alt="Word Meadow — the meadow path map, twenty zones of flowers waiting to be unlocked" loading="eager"></div>
