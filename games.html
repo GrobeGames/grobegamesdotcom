@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Games - Grobe Games</title>
-  <meta name="description" content="Discover games by Grobe Games — fun, family-friendly puzzles and adventures. Word Meadow launches September 2026, and Photon Light Quest is on the App Store now.">
+  <meta name="description" content="Discover games by Grobe Games — fun, family-friendly puzzles and adventures. Word Meadow and Photon Light Quest are both on the App Store now.">
   <meta property="og:title" content="Our Games - Grobe Games">
   <meta property="og:description" content="Fun, family-friendly puzzles and adventures from a father &amp; daughter game studio.">
   <meta property="og:image" content="https://grobegames.com/grobe-bears-logo.png">
@@ -213,9 +213,9 @@
       border-bottom: 1px solid rgba(47, 122, 56, 0.10);
     }
     .game-feature.meadow .game-tagline { color: var(--meadow-deep); }
-    .game-feature.meadow .game-badge.coming-soon {
-      background: linear-gradient(135deg, var(--gold), #E8A820);
-      color: #4A3708;
+    .game-feature.meadow .game-badge {
+      background: linear-gradient(135deg, var(--meadow), var(--meadow-deep));
+      color: #fff;
     }
     .game-feature.meadow .game-cta {
       background: linear-gradient(135deg, var(--meadow), var(--meadow-deep));
@@ -326,6 +326,7 @@
       text-transform: uppercase;
       width: fit-content;
     }
+    .game-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
     .game-badge.coming-soon {
       background: linear-gradient(135deg, var(--gold), #E8A820);
       color: var(--dark);
@@ -668,9 +669,9 @@
         </a>
       </div>
       <div class="game-info">
-        <span class="game-badge coming-soon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-          Launching September 2026
+        <span class="game-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Now Available
         </span>
         <div class="game-title-row">
           <img class="game-app-icon" src="word-meadow/app-icon.png"
@@ -706,10 +707,19 @@
             A daily puzzle, endless mode, and 47 awards to chase
           </li>
         </ul>
-        <a href="word-meadow/index.html" class="game-cta">
-          Explore Word Meadow
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <div class="game-actions">
+          <a href="https://apps.apple.com/us/app/word-meadow/id6761626767" target="_blank" rel="noopener" class="app-store-btn">
+            <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
+            <div class="app-store-btn-text">
+              <div class="small">Download on the</div>
+              <div class="big">App Store</div>
+            </div>
+          </a>
+          <a href="word-meadow/index.html" class="game-cta">
+            Explore Word Meadow
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
