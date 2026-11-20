@@ -203,6 +203,32 @@
       position: relative;
       overflow: hidden;
     }
+    /* RosterWise: Grobe Games' college-recruiting app, in its own navy and gold */
+    .game-screenshot-area.wide {
+      aspect-ratio: 1200 / 630;
+      max-height: none;
+      background: #1a2744;
+    }
+    .game-screenshot-area.wide img { object-fit: contain; }
+    .site-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a2744;
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 17px;
+      border-bottom: 3px solid #c8a44e;
+      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+    .site-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); }
+    .site-btn:focus-visible { outline: 3px solid #c8a44e; outline-offset: 3px; }
+
     .game-feature.alt {
       background: var(--light-gray);
     }
@@ -782,6 +808,40 @@
     </div>
   </section>
 
+  <!-- ROSTERWISE -->
+  <section class="game-feature" id="rosterwise">
+    <div class="game-inner animate">
+      <div class="game-visual">
+        <a href="https://rosterwise.app/" class="game-screenshot-area wide" aria-label="RosterWise website">
+          <img src="rosterwise/rosterwise-banner.jpg" alt="RosterWise: Find your fit." width="1200" height="630" loading="lazy">
+        </a>
+      </div>
+      <div class="game-info">
+        <span class="game-badge">Also from Grobe Games</span>
+        <h2>RosterWise</h2>
+        <p class="game-tagline">College roster intelligence for recruits and their families.</p>
+        <p class="game-description">
+          RosterWise&trade; apps show college rosters program by program, with depth, class-year gaps and fit.
+          There's one app for each sport: soccer, volleyball, lacrosse, wrestling, softball and rowing.
+        </p>
+        <p class="game-description">
+          rosterwise.app also has free recruiting guides for each sport.
+        </p>
+        <ul class="game-features">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Free to try, $39.99 one time for full unlock
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            No subscriptions, no ads
+          </li>
+        </ul>
+        <a href="https://rosterwise.app/" class="site-btn">Visit rosterwise.app</a>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer id="contact">
     <div class="footer-inner">
@@ -805,6 +865,12 @@
           <a href="games.html#photon-light-quest">Game Page</a>
           <a href="photon-light-quest/support.html">Support</a>
           <a href="photon-light-quest/privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">RosterWise</span>
+          <a href="https://rosterwise.app/">rosterwise.app</a>
+          <a href="https://rosterwise.app/support/">Support</a>
+          <a href="https://rosterwise.app/privacy/">Privacy Policy</a>
         </div>
         <div class="footer-col">
           <span class="footer-col-title">Company</span>
