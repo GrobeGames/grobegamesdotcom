@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Large Print Puzzle Books for Adults | Grobe Games</title>
+  <meta name="description" content="Clear Page Puzzles: large-print puzzle books for adults from Grobe Games. Word search, 9 by 9 number puzzles and a whole book of cat word searches, in big, clear print with one puzzle per page and every answer in the back.">
+  <link rel="canonical" href="https://grobegames.com/puzzle-books/">
+  <meta property="og:title" content="Clear Page Puzzles: Large Print Puzzle Books for Adults">
+  <meta property="og:description" content="Word search, number puzzles and a whole book of cats, in big, clear print. One puzzle per page, every answer in the back.">
+  <meta property="og:image" content="https://grobegames.com/puzzle-books/img/share.jpg">
+  <meta property="og:url" content="https://grobegames.com/puzzle-books/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#7B2FBE">
+  <link rel="icon" type="image/png" href="../grobe-bears-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Grobe Games brand (same as the home page) */
+      --purple: #7B2FBE;
+      --purple-dark: #5E1F96;
+      --purple-light: #9B59D0;
+      --purple-tint: #F3ECFA;
+      --gold: #F0C030;
+      --gold-deep: #E0A81C;
+      --gold-ink: #4A3708;
+      --white: #FFFFFF;
+      --dark: #1A1A2E;
+      --gray: #5D5872;
+      --line: #E4DCEF;
+      /* The three book covers, as they look on screen */
+      --teal: #256765;  --teal-dark: #17494A;
+      --navy: #1C3150;  --navy-dark: #111F36;
+      --plum: #4B2850;  --plum-dark: #321A37;
+      /* Puzzle tiles and highlighter colors from the covers */
+      --tile: #FFF7E0;
+      --sun: #F7D046;
+      --pink: #F59AB8;
+      --mint: #8EE3B0;
+      --sky: #9CC3F5;
+      --orange: #F08A2E;
+      --radius: 20px;
+      --shadow-soft: 0 4px 24px rgba(123, 47, 190, 0.08);
+      --shadow-hover: 0 20px 60px rgba(123, 47, 190, 0.18);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.22); } 100% { transform: scale(1); } }
+    @keyframes blink { 50% { opacity: 0.35; } }
+    @keyframes underline { to { background-size: 100% 100%; } }
+    @keyframes swapIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .animate { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .animate.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== NAV (as on the home page) ===== */
+    body > nav {
+      position: fixed; top: 0; width: 100%; z-index: 100; padding: 16px 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(123, 47, 190, 0.06);
+    }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-logo { font-weight: 900; font-size: 20px; color: var(--purple); letter-spacing: -0.5px; text-decoration: none; transition: opacity var(--transition); }
+    .nav-logo:hover { opacity: 0.8; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-weight: 700; font-size: 15px; transition: color var(--transition); position: relative; }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2.5px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--purple-light)); transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--purple); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--purple); }
+    .nav-links a.nav-highlight { color: #2F7A38; display: inline-flex; align-items: center; gap: 6px; }
+    .nav-links a.nav-highlight::after { background: linear-gradient(90deg, #2F7A38, #8FD16A); }
+    .nav-links a.nav-highlight:hover { color: #1F5C2A; }
+    .nav-links a.nav-books { display: inline-flex; align-items: center; gap: 6px; }
+    .nav-new {
+      font-size: 9px; font-weight: 900; letter-spacing: 0.8px; text-transform: uppercase; color: var(--gold-ink);
+      background: linear-gradient(135deg, #F7C948, var(--gold-deep)); padding: 2px 7px; border-radius: 20px; line-height: 1.5;
+    }
+
+    /* ===== SHARED PIECES ===== */
+    .section-label {
+      display: inline-block; font-weight: 900; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--purple); background: var(--purple-tint); padding: 5px 14px; border-radius: 999px;
+    }
+    .section-title { font-size: clamp(28px, 3.6vw, 40px); font-weight: 900; line-height: 1.15; letter-spacing: -0.5px; margin-top: 12px; text-wrap: balance; }
+    .section-title span { color: var(--purple); }
+    .status {
+      display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 900; letter-spacing: 0.02em;
+      padding: 5px 11px; border-radius: 999px; background: #FFF1C9; color: #6B4E00; white-space: nowrap;
+    }
+    .status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold-deep); animation: blink 1.6s ease-in-out infinite; }
+    .btn-amazon {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap;
+      background: var(--dark); color: var(--white); border-radius: 12px; padding: 12px 18px; font-weight: 800; font-size: 15px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    a.btn-amazon:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(26, 26, 46, 0.25); }
+    .btn-amazon.is-soon { opacity: 0.5; cursor: not-allowed; }
+    .btn-amazon svg, .btn-peek svg { width: 18px; height: 18px; flex: none; }
+    .btn-peek {
+      appearance: none; border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--purple-tint); color: var(--purple); border-radius: 12px; padding: 12px 18px; font-weight: 800; font-size: 15px; cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-peek:hover { background: #E8DAF7; transform: translateY(-1px); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .actions > * { flex: 1 1 auto; }
+
+    /* ===== SHELF HERO ===== */
+    .shelf-hero {
+      position: relative; overflow: hidden; text-align: center;
+      padding: 124px 24px 70px;
+      background: linear-gradient(180deg, var(--white) 0%, var(--purple-tint) 100%);
+    }
+    .tiles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .tiles span {
+      position: absolute; bottom: -70px; left: var(--x); width: var(--s); height: var(--s); border-radius: 22%;
+      background: var(--tile); color: var(--col); display: grid; place-items: center; font-weight: 900; font-size: calc(var(--s) * 0.56);
+      box-shadow: 0 6px 14px rgba(60, 20, 100, 0.12); opacity: 0.7; animation: drift var(--t) linear infinite; animation-delay: var(--dl);
+    }
+    @keyframes drift { from { transform: translateY(0) rotate(var(--r0)); } to { transform: translateY(-900px) rotate(var(--r1)); } }
+    .hero-copy { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .hero-copy h1 { font-weight: 900; font-size: clamp(34px, 5.4vw, 56px); line-height: 1.06; letter-spacing: -1px; margin: 14px 0; text-wrap: balance; }
+    .hero-copy h1 .hl {
+      color: var(--purple); background: linear-gradient(transparent 72%, rgba(240, 192, 48, 0.55) 72%) no-repeat; background-size: 0% 100%;
+      animation: underline 1s ease-out 0.5s forwards;
+    }
+    .hero-copy p { font-size: 18px; color: var(--gray); max-width: 52ch; margin: 0 auto; }
+
+    .shelf-wrap { position: relative; z-index: 1; max-width: 860px; margin: 40px auto 0; }
+    .shelf { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: clamp(22px, 6vw, 72px); padding-top: 30px; }
+    .plank {
+      position: absolute; left: 0; right: 0; bottom: -20px; height: 20px; border-radius: 4px;
+      background: linear-gradient(#D6A86E, #A97A45); box-shadow: 0 16px 26px rgba(80, 40, 10, 0.22);
+    }
+    .plank::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 10px; background: linear-gradient(#8E6436, #7A552D); border-radius: 0 0 4px 4px; }
+    .book3d {
+      --w: 176px; --d: 22px; --h: calc(var(--w) * 1.2933);
+      appearance: none; border: 0; background: none; padding: 0; cursor: pointer; display: block;
+      width: var(--w); height: var(--h); position: relative; perspective: 1100px;
+      animation: shelfIn 0.9s cubic-bezier(0.2, 1.3, 0.4, 1) both; animation-delay: calc(var(--n) * 0.15s + 0.1s);
+    }
+    .book3d.thin { --d: 13px; }  /* book 3 has 82 pages, books 1 and 2 have 154 */
+    .book3d::after {
+      content: ''; position: absolute; left: 4%; right: -10%; bottom: -14px; height: 18px;
+      background: radial-gradient(ellipse at center, rgba(40, 20, 0, 0.3), transparent 70%);
+    }
+    @keyframes shelfIn { from { transform: translateY(-70px); opacity: 0; } to { transform: none; opacity: 1; } }
+    .b3d { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(30deg); transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .book3d:hover .b3d, .book3d:focus-visible .b3d { transform: rotateY(20deg) translateY(-10px); }
+    .book3d.open .b3d { transform: rotateY(4deg) translateY(-16px) translateZ(70px); }
+    .shelf.has-open .book3d:not(.open) .b3d { transform: rotateY(32deg) translateZ(-24px); }
+    .shelf.has-open .book3d:not(.open):hover .b3d { transform: rotateY(20deg) translateY(-10px); }
+    .face { position: absolute; display: block; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .cover {
+      position: absolute; inset: 0; display: block; transform-style: preserve-3d; transform-origin: left center; z-index: 2;
+      transform: translateZ(calc(var(--d) / 2)); transition: transform 1s cubic-bezier(0.3, 0.7, 0.2, 1) 0.1s;
+    }
+    .book3d.open .cover { transform: translateZ(calc(var(--d) / 2)) rotateY(-132deg); }
+    .cover .out { inset: 0; border-radius: 2px 6px 6px 2px; overflow: hidden; box-shadow: inset 5px 0 6px rgba(0, 0, 0, 0.25); }
+    .cover .out img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .cover .in {
+      inset: 0; transform: rotateY(180deg); border-radius: 6px 2px 2px 6px; background: var(--bc); color: rgba(255, 255, 255, 0.85);
+      display: grid; place-items: center; text-align: center; font-weight: 900; font-size: calc(var(--w) * 0.07); line-height: 1.3; padding: 12%;
+    }
+    .firstpage {
+      inset: 2px 3px 2px 0; transform: translateZ(calc(var(--d) / 2 - 1px)); background: var(--white) center / 100% 100% no-repeat;
+      border-radius: 0 4px 4px 0; box-shadow: inset 10px 0 12px -8px rgba(0, 0, 0, 0.35);
+    }
+    .spine { top: 0; height: 100%; left: calc(50% - var(--d) / 2); width: var(--d); transform: rotateY(-90deg) translateZ(calc(var(--w) / 2)); background: var(--bc) center / 100% 100% no-repeat; }
+    .edge {
+      top: 3px; height: calc(100% - 6px); left: calc(50% - var(--d) / 2); width: calc(var(--d) - 2px);
+      transform: rotateY(90deg) translateZ(calc(var(--w) / 2 - 3px)); background: repeating-linear-gradient(90deg, #FFFDF7 0 2px, #E7E0CF 2px 3px);
+    }
+    .back { inset: 0; transform: translateZ(calc(var(--d) / -2)) rotateY(180deg); background: var(--bcd); border-radius: 6px 2px 2px 6px; }
+    .picker { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 50px; }
+    .picker button {
+      appearance: none; border: 2px solid var(--line); background: var(--white); border-radius: 999px; padding: 6px 16px;
+      font-weight: 800; font-size: 14px; color: var(--gray); cursor: pointer; transition: border-color 0.2s, color 0.2s;
+    }
+    .picker button:hover { color: var(--purple); }
+    .picker button[aria-pressed="true"] { border-color: var(--purple); color: var(--purple); }
+
+    /* ===== BOOK DETAILS (one panel per book; without JavaScript all three show) ===== */
+    .books { padding: 60px 24px 30px; }
+    .book-panel { max-width: 940px; margin: 0 auto 48px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 40px; align-items: center; }
+    .js .book-panel { margin-bottom: 0; }
+    .book-panel[hidden] { display: none; }
+    .book-panel.swap { animation: swapIn 0.5s ease-out; }
+    .pitch-card {
+      background: var(--qc); color: var(--white); border-radius: 24px; padding: 30px 28px; position: relative; overflow: hidden; min-height: 240px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+    }
+    .pitch-card .status { align-self: flex-start; position: relative; z-index: 1; }
+    .pitch-card p { font-size: clamp(24px, 3vw, 32px); font-weight: 900; line-height: 1.15; text-wrap: balance; position: relative; z-index: 1; }
+    .pitch-card .num { position: absolute; right: -8px; bottom: -48px; font-size: 200px; font-weight: 900; line-height: 1; color: rgba(255, 255, 255, 0.09); }
+    .book-info .series { font-size: 12px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple); }
+    .book-info h2 { font-size: clamp(24px, 2.8vw, 30px); font-weight: 900; line-height: 1.2; margin: 4px 0; text-wrap: balance; }
+    .book-info .sub { color: var(--gray); margin-bottom: 14px; }
+    .book-info ul { list-style: none; display: grid; gap: 8px; margin-bottom: 20px; }
+    .book-info li { display: flex; gap: 12px; align-items: baseline; }
+    .book-info li::before { content: ''; flex: none; width: 9px; height: 9px; border-radius: 3px; background: var(--gold); transform: rotate(45deg) translateY(-2px); }
+
+    /* ===== TRY ONE (playable word search) ===== */
+    .play {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center;
+      max-width: 1060px; margin: 0 auto; padding: 70px 24px 90px;
+    }
+    .play-copy p { font-size: 17px; color: var(--gray); max-width: 46ch; margin-top: 14px; }
+    .play-copy .facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin-top: 20px; }
+    .play-copy .facts li { background: var(--purple-tint); border-radius: 999px; padding: 4px 13px; font-size: 14px; font-weight: 700; }
+    .play-copy .facts b { color: var(--purple); font-weight: 900; }
+    .ws-wrap { justify-self: center; width: min(100%, 440px); position: relative; transform: rotate(-1.5deg); }
+    .ws-card { background: var(--white); border-radius: 24px; padding: 14px 14px 12px; box-shadow: var(--shadow-hover); position: relative; }
+    .ws-card.idle { animation: float 6s ease-in-out infinite; }
+    .ws-grid { position: relative; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); aspect-ratio: 1; touch-action: none; user-select: none; -webkit-user-select: none; }
+    .ws-cell {
+      appearance: none; border: 0; background: var(--tile); color: var(--dark); font-weight: 900; font-size: clamp(17px, 3.6vw, 26px);
+      margin: 2px; border-radius: 9px; display: grid; place-items: center; cursor: pointer; padding: 0; transition: background 0.15s;
+    }
+    .ws-cell.anchor { background: var(--sun); }
+    .ws-cell.pop { animation: pop 0.4s ease-out; }
+    .cap { position: absolute; border-radius: 999px; pointer-events: none; z-index: 3; mix-blend-mode: multiply; transform-origin: center; }
+    .cap.temp { background: rgba(155, 89, 208, 0.32); }
+    .cap.found { animation: capIn 0.35s ease-out; }
+    .cap.c0 { background: var(--sun); } .cap.c1 { background: var(--pink); } .cap.c2 { background: var(--mint); } .cap.c3 { background: var(--sky); }
+    .cap.shown { background: rgba(155, 89, 208, 0.22); }
+    .cap.ghost { background: rgba(247, 208, 70, 0.85); animation: ghost 2.4s ease-in-out 0.4s both; }
+    @keyframes capIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes ghost { 0% { clip-path: inset(0 100% 0 0); opacity: 1; } 45% { clip-path: inset(0 0 0 0); opacity: 1; } 75% { opacity: 1; } 100% { clip-path: inset(0 0 0 0); opacity: 0; } }
+    .ws-grid.shake { animation: shake 0.35s; }
+    @keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    .ws-words { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px 10px; padding: 12px 6px 0; font-weight: 800; font-size: 15px; }
+    .ws-words li { display: flex; align-items: center; gap: 7px; min-width: 0; transition: color 0.2s; }
+    .ws-words li::before { content: ''; flex: none; width: 15px; height: 15px; border: 2px solid var(--dark); border-radius: 4px; background: var(--white) center / 11px no-repeat; }
+    .ws-words li.done { color: #9C97AC; text-decoration: line-through; text-decoration-thickness: 2px; }
+    .ws-words li.done::before {
+      background-color: var(--purple); border-color: var(--purple);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.6 2.5L10 3' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .ws-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; padding: 0 6px; font-size: 14px; color: var(--gray); }
+    .ws-foot p { min-width: 0; }
+    .ws-foot button { appearance: none; border: 0; background: none; color: var(--purple); font-weight: 800; cursor: pointer; padding: 4px 0; white-space: nowrap; }
+    .confetti { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+    .confetti i { position: absolute; top: 40%; left: 50%; width: 9px; height: 14px; border-radius: 2px; animation: burst 1.5s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
+    @keyframes burst { to { transform: translate(var(--x), var(--y)) rotate(var(--rot)); opacity: 0; } }
+
+    /* ===== PEEK INSIDE ===== */
+    .peek { position: fixed; inset: 0; z-index: 300; background: rgba(26, 26, 46, 0.62); display: grid; place-items: center; padding: 20px 16px; }
+    .peek[hidden] { display: none; }
+    .peek-card { background: var(--white); border-radius: 22px; width: min(100%, 880px); max-height: 100%; overflow: auto; padding: 22px; position: relative; animation: swapIn 0.35s ease-out; }
+    .peek-card h2 { margin: 0 48px 4px 0; font-size: 20px; font-weight: 900; line-height: 1.25; }
+    .peek-card .note { margin-bottom: 14px; color: var(--gray); font-size: 14px; }
+    .peek-pages { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .peek-pages figure { margin: 0; }
+    .peek-pages img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line); box-shadow: 0 10px 24px rgba(26, 26, 46, 0.12); }
+    .peek-pages figcaption { font-size: 13px; font-weight: 700; color: var(--gray); margin-top: 6px; }
+    .peek-close {
+      position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; border: 0;
+      background: var(--purple-tint); color: var(--purple); font-size: 24px; font-weight: 900; cursor: pointer; line-height: 1;
+    }
+
+    /* ===== FOOTER (as on the home page) ===== */
+    footer { background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%); color: var(--white); padding: 56px 24px; text-align: center; position: relative; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); }
+    .footer-inner { max-width: 800px; margin: 0 auto; }
+    .footer-brand { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+    .footer-motto { font-size: 14px; opacity: 0.75; margin-bottom: 28px; font-style: italic; }
+    .footer-columns { display: flex; justify-content: center; gap: 48px; margin-bottom: 28px; flex-wrap: wrap; text-align: left; }
+    .footer-col { display: flex; flex-direction: column; gap: 8px; min-width: 140px; }
+    .footer-col-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; margin-bottom: 4px; }
+    .footer-col a { color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; opacity: 0.9; transition: opacity 0.2s; }
+    .footer-col a:hover { opacity: 1; text-decoration: underline; }
+    .copyright { font-size: 13px; opacity: 0.55; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 860px) {
+      .book-panel { grid-template-columns: minmax(0, 1fr); gap: 24px; max-width: 540px; }
+      .pitch-card { min-height: 0; }
+      .play { grid-template-columns: minmax(0, 1fr); gap: 34px; padding: 56px 20px 72px; }
+    }
+    @media (max-width: 760px) {
+      .book3d { --w: 96px; --d: 12px; }
+      .book3d.thin { --d: 8px; }
+      .book3d.open .b3d { transform: translateX(calc(var(--w) * 0.42)) rotateY(4deg) translateY(-10px) translateZ(40px); }
+      .book3d.open .cover { transform: translateZ(calc(var(--d) / 2)) rotateY(-118deg); }
+    }
+    @media (max-width: 600px) {
+      body > nav { padding: 10px 0; }
+      .nav-inner { padding: 0 12px; flex-direction: column; gap: 8px; }
+      .nav-logo { font-size: 16px; }
+      .nav-links { gap: 8px 9px; justify-content: center; flex-wrap: wrap; }
+      .nav-links a { font-size: 12px; }
+      .nav-new { display: none; }
+      .shelf-hero { padding: 132px 16px 52px; }
+      .hero-copy p { font-size: 16px; }
+      .books { padding: 44px 16px 16px; }
+      .play { padding: 48px 16px 64px; }
+      footer { padding: 40px 16px; }
+      .footer-brand { font-size: 19px; }
+      .footer-columns { gap: 28px; }
+      .footer-col a { font-size: 13px; }
+    }
+    @media (max-width: 420px) { .ws-words { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 380px) {
+      .nav-links { gap: 6px 7px; }
+      .nav-links a { font-size: 11px; }
+      .nav-logo { font-size: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+      .animate { opacity: 1; transform: none; }
+      .hero-copy h1 .hl { background-size: 100% 100%; }
+      .tiles, .cap.ghost { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">GROBE GAMES</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../games.html">Games</a></li>
+        <li><a href="../word-meadow/index.html" class="nav-highlight">Word Meadow<span class="nav-new">New</span></a></li>
+        <li><a href="index.html" class="nav-books active" aria-current="page">Puzzle Books<span class="nav-new">New</span></a></li>
+        <li><a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener">Merch</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO: THE BOOKSHELF -->
+  <header class="shelf-hero">
+    <div class="tiles" id="tiles" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <span class="section-label">Clear Page Puzzles</span>
+      <h1>Puzzle books in <span class="hl">big, clear print</span></h1>
+      <p>Three large-print puzzle books for grown-ups from Grobe Games: word search, number puzzles and a whole book of cats. Tap a book to open it.</p>
+    </div>
+    <div class="shelf-wrap">
+      <div class="shelf" id="shelf">
+        <button class="book3d" type="button" data-book="word-search" aria-controls="word-search" aria-pressed="false" aria-label="Open Large Print Word Search for Adults" style="--n: 0; --bc: var(--teal); --bcd: var(--teal-dark)">
+          <span class="b3d"><span class="cover"><span class="face out"><img src="img/book1-front.jpg" alt="" width="600" height="776"></span><span class="face in">Clear Page Puzzles<br>Book 1</span></span><span class="face firstpage" style="background-image: url(img/book1-page5.jpg)"></span><span class="face spine" style="background-image: url(img/book1-spine.jpg)"></span><span class="face edge"></span><span class="face back"></span></span>
+        </button>
+        <button class="book3d" type="button" data-book="number-puzzles" aria-controls="number-puzzles" aria-pressed="false" aria-label="Open Large Print Number Puzzles for Adults" style="--n: 1; --bc: var(--navy); --bcd: var(--navy-dark)">
+          <span class="b3d"><span class="cover"><span class="face out"><img src="img/book2-front.jpg" alt="" width="600" height="776"></span><span class="face in">Clear Page Puzzles<br>Book 2</span></span><span class="face firstpage" style="background-image: url(img/book2-page5.jpg)"></span><span class="face spine" style="background-image: url(img/book2-spine.jpg)"></span><span class="face edge"></span><span class="face back"></span></span>
+        </button>
+        <button class="book3d thin" type="button" data-book="cat-word-search" aria-controls="cat-word-search" aria-pressed="false" aria-label="Open Large Print Cat Word Search for Adults" style="--n: 2; --bc: var(--plum); --bcd: var(--plum-dark)">
+          <span class="b3d"><span class="cover"><span class="face out"><img src="img/book3-front.jpg" alt="" width="600" height="776"></span><span class="face in">Clear Page Puzzles<br>Book 3</span></span><span class="face firstpage" style="background-image: url(img/book3-page5.jpg)"></span><span class="face spine" style="background-image: url(img/book3-spine.jpg)"></span><span class="face edge"></span><span class="face back"></span></span>
+        </button>
+        <div class="plank" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="picker" role="group" aria-label="Choose a book">
+      <button type="button" data-book="word-search" aria-pressed="false">Word Search</button>
+      <button type="button" data-book="number-puzzles" aria-pressed="false">Number Puzzles</button>
+      <button type="button" data-book="cat-word-search" aria-pressed="false">Cat Word Search</button>
+    </div>
+  </header>
+
+  <!-- BOOK DETAILS -->
+  <main>
+  <section class="books" aria-label="The books">
+
+    <!-- Book 1. Facts from GrobeGames/puzzle-books: books/book1.toml (back-cover text) and the build (154 pages). -->
+    <article class="book-panel" id="word-search">
+      <div class="pitch-card" style="--qc: var(--teal)">
+        <span class="status">Coming soon to Amazon</span>
+        <p>Big letters. Clear pages. Hours of happy searching.</p>
+        <span class="num" aria-hidden="true">1</span>
+      </div>
+      <div class="book-info">
+        <div class="series">Clear Page Puzzles &middot; Book 1</div>
+        <h2>Large Print Word Search for Adults</h2>
+        <p class="sub">100 Themed Puzzles in Big, Clear Letters, with Answers</p>
+        <ul>
+          <li>100 word search puzzles on everyday themes, from garden flowers to great composers</li>
+          <li>Bold 24-point letters in every grid, and word lists in 18-point type</li>
+          <li>Puzzles 1 to 50 hide words forward only; puzzles 51 to 100 use every direction</li>
+          <li>Answers to every puzzle at the back, on 154 large 8.5 by 11 inch pages</li>
+        </ul>
+        <div class="actions">
+          <!-- AMAZON book1: when live, replace this span with
+               <a class="btn-amazon" href="https://www.amazon.com/dp/ASIN" target="_blank" rel="noopener">(cart svg) Buy on Amazon</a> -->
+          <span class="btn-amazon is-soon" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 7H6.2"/></svg>Amazon link coming soon</span>
+          <button class="btn-peek" type="button" data-peek="word-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Peek inside</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Book 2. Facts from GrobeGames/puzzle-books: books/book2.toml and the build (154 pages). -->
+    <article class="book-panel" id="number-puzzles">
+      <div class="pitch-card" style="--qc: var(--navy)">
+        <span class="status">Coming soon to Amazon</span>
+        <p>Big numbers. Clear grids. Pure logic.</p>
+        <span class="num" aria-hidden="true">2</span>
+      </div>
+      <div class="book-info">
+        <div class="series">Clear Page Puzzles &middot; Book 2</div>
+        <h2>Large Print Number Puzzles for Adults</h2>
+        <p class="sub">120 Classic 9x9 Logic Puzzles, Easy to Hard, One per Page, with Answers</p>
+        <ul>
+          <li>120 classic 9 by 9 number puzzles: 40 easy, 40 medium and 40 hard</li>
+          <li>Every puzzle has exactly one answer, reached by reasoning alone, with no guessing</li>
+          <li>One puzzle per page, with bold 34-point numbers in a big grid</li>
+          <li>Answers to every puzzle at the back, on 154 large 8.5 by 11 inch pages</li>
+        </ul>
+        <div class="actions">
+          <!-- AMAZON book2: when live, replace this span with a link, as for book 1 -->
+          <span class="btn-amazon is-soon" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 7H6.2"/></svg>Amazon link coming soon</span>
+          <button class="btn-peek" type="button" data-peek="number-puzzles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Peek inside</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Book 3. Facts from GrobeGames/puzzle-books: books/book3.toml and the build (82 pages). -->
+    <article class="book-panel" id="cat-word-search">
+      <div class="pitch-card" style="--qc: var(--plum)">
+        <span class="status">Coming soon to Amazon</span>
+        <p>A whole book of cats, in big, clear letters.</p>
+        <span class="num" aria-hidden="true">3</span>
+      </div>
+      <div class="book-info">
+        <div class="series">Clear Page Puzzles &middot; Book 3</div>
+        <h2>Large Print Cat Word Search for Adults</h2>
+        <p class="sub">52 Puzzles for Cat Lovers in Big, Clear Letters, with Answers</p>
+        <ul>
+          <li>52 word search puzzles, every one about cats</li>
+          <li>Breeds, kittens, toys, naps, cat sayings, cozy spots and more</li>
+          <li>Bold 24-point letters in every grid, and word lists in 18-point type</li>
+          <li>Answers to every puzzle at the back, on 82 large 8.5 by 11 inch pages</li>
+        </ul>
+        <div class="actions">
+          <!-- AMAZON book3: when live, replace this span with a link, as for book 1 -->
+          <span class="btn-amazon is-soon" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 7H6.2"/></svg>Amazon link coming soon</span>
+          <button class="btn-peek" type="button" data-peek="cat-word-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Peek inside</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- TRY ONE: a small playable word search -->
+  <section class="play" id="try-one">
+    <div class="play-copy animate">
+      <span class="section-label">Try one now</span>
+      <h2 class="section-title">Find the <span>8 hidden words</span></h2>
+      <p>Drag across a word, or tap its first and last letter. Words run across, down and on the diagonal. This grid is a small one: every puzzle in Book 1 is 14 by 14 letters, one to a page.</p>
+      <ul class="facts">
+        <li><b>100</b> puzzles in Book 1</li>
+        <li><b>52</b> cat puzzles in Book 3</li>
+        <li><b>24-pt</b> letters</li>
+      </ul>
+    </div>
+    <div class="ws-wrap">
+      <div class="ws-card idle" id="wsCard">
+        <div class="ws-grid" id="wsGrid" aria-label="Word search: 8 by 8 letters"></div>
+        <ul class="ws-words" id="wsWords"></ul>
+        <div class="ws-foot"><p id="wsStatus" aria-live="polite">Drag across a word, or tap its first and last letter.</p><button id="wsReveal" type="button">Show answers</button></div>
+        <div class="confetti" id="wsConfetti" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- PEEK INSIDE -->
+  <div class="peek" id="peek" hidden role="dialog" aria-modal="true" aria-labelledby="peekTitle">
+    <div class="peek-card">
+      <button class="peek-close" id="peekClose" type="button" aria-label="Close">&times;</button>
+      <h2 id="peekTitle"></h2>
+      <p class="note">Real pages from the book, shown smaller than their 8.5 by 11 inch size.</p>
+      <div class="peek-pages" id="peekPages"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">GROBE GAMES</div>
+      <div class="footer-motto">Play More. Grin More.</div>
+      <nav class="footer-columns" aria-label="Site map">
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <a href="../index.html">Home</a>
+          <a href="../games.html">Games</a>
+          <a href="index.html">Puzzle Books</a>
+          <a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener">Merch Store</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Word Meadow</span>
+          <a href="../word-meadow/index.html">Game Page</a>
+          <a href="../word-meadow/support.html">Support</a>
+          <a href="../word-meadow/privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Photon Light Quest</span>
+          <a href="../games.html#photon-light-quest">Game Page</a>
+          <a href="../photon-light-quest/support.html">Support</a>
+          <a href="../photon-light-quest/privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Company</span>
+          <a href="mailto:support@grobegames.com">Contact Us</a>
+          <a href="../privacy-policy.html">Privacy Policy</a>
+        </div>
+      </nav>
+      <div class="copyright">&copy; 2026 Grobe Games LLC. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    const $ = (s, el = document) => el.querySelector(s);
+    const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add('js');
+
+    /* Reveal on scroll (as on the other pages) */
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.12 });
+    $$('.animate').forEach(el => observer.observe(el));
+
+    /* ---------- The bookshelf ---------- */
+    const BOOKS = ['word-search', 'number-puzzles', 'cat-word-search'];
+    const shelf = $('#shelf');
+    const tiles = $('#tiles');
+    if (!reduce) {
+      const chars = 'ABCDEGHKLMNOPRSTWY123456789';
+      const cols = ['var(--teal)', 'var(--navy)', 'var(--plum)', 'var(--purple)', 'var(--orange)'];
+      const narrow = window.matchMedia('(max-width: 760px)').matches;
+      for (let i = 0; i < (narrow ? 10 : 20); i++) {
+        const s = document.createElement('span');
+        s.textContent = chars[(i * 7) % chars.length];
+        const left = i % 2 ? 2 + Math.random() * 18 : 80 + Math.random() * 16;
+        s.style.cssText = '--x:' + left + '%;--s:' + (24 + Math.random() * 22) + 'px;--t:' + (16 + Math.random() * 14) + 's;--dl:' + (-Math.random() * 28) + 's;--r0:' + (Math.random() * 40 - 20) + 'deg;--r1:' + (Math.random() * 200 - 100) + 'deg;--col:' + cols[i % cols.length];
+        tiles.appendChild(s);
+      }
+    }
+    function selectBook(id, opts = {}) {
+      if (!BOOKS.includes(id)) return;
+      $$('.book3d', shelf).forEach(b => { const on = b.dataset.book === id; b.classList.toggle('open', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      $$('.picker button').forEach(b => b.setAttribute('aria-pressed', b.dataset.book === id ? 'true' : 'false'));
+      shelf.classList.add('has-open');
+      showPanel(id, opts.animate !== false);
+    }
+    function showPanel(id, animate) {
+      BOOKS.forEach(b => {
+        const p = document.getElementById(b);
+        p.hidden = b !== id;
+        if (b === id && animate) { p.classList.remove('swap'); void p.offsetWidth; p.classList.add('swap'); }
+      });
+    }
+    $$('.book3d, .picker button').forEach(b => b.addEventListener('click', () => selectBook(b.dataset.book)));
+    /* A link like puzzle-books/#cat-word-search opens that book; otherwise book 1 opens after the books land. */
+    const fromHash = location.hash.slice(1);
+    if (BOOKS.includes(fromHash)) { selectBook(fromHash, { animate: false }); }
+    else {
+      showPanel('word-search', false);
+      setTimeout(() => { if (!shelf.classList.contains('has-open')) selectBook('word-search', { animate: false }); }, reduce ? 0 : 1100);
+    }
+    window.addEventListener('hashchange', () => selectBook(location.hash.slice(1)));
+
+    /* ---------- Capsules (the rounded outlines around found words) ---------- */
+    function placeCap(el, a, b, n) {
+      const cx = (a.c + b.c + 1) / 2 / n * 100, cy = (a.r + b.r + 1) / 2 / n * 100;
+      const th = 0.84 / n * 100, len = (Math.hypot(b.r - a.r, b.c - a.c) + 0.84) / n * 100;
+      el.style.left = (cx - len / 2) + '%'; el.style.top = (cy - th / 2) + '%';
+      el.style.width = len + '%'; el.style.height = th + '%';
+      el.style.transform = 'rotate(' + (Math.atan2(b.r - a.r, b.c - a.c) * 180 / Math.PI) + 'deg)';
+    }
+
+    /* ---------- Try one: the playable word search ----------
+       Every word appears exactly once and the grid holds no offensive words; checked with the puzzle-books filters. */
+    const ROWS = ['PUZZLEKC', 'FUNWHCDL', 'GXBTOAVE', 'JRQDYTMA', 'VHIKWSOR', 'DQJNXBRU', 'BIGVJQET', 'WKPLAYHX'];
+    const WORDS = { PUZZLE: [[0, 0], [0, 5]], CLEAR: [[0, 7], [4, 7]], PLAY: [[7, 2], [7, 5]], MORE: [[3, 6], [6, 6]], GRIN: [[2, 0], [5, 3]], CATS: [[1, 5], [4, 5]], BIG: [[6, 0], [6, 2]], FUN: [[1, 0], [1, 2]] };
+    const N = 8;
+    const grid = $('#wsGrid'), card = $('#wsCard'), statusEl = $('#wsStatus'), wordList = $('#wsWords');
+    const found = new Set();
+    let colorIx = 0;
+    ROWS.forEach((row, r) => [...row].forEach((ch, c) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'ws-cell'; b.textContent = ch; b.dataset.r = r; b.dataset.c = c;
+      b.setAttribute('aria-label', 'Row ' + (r + 1) + ', column ' + (c + 1) + ': ' + ch);
+      grid.appendChild(b);
+    }));
+    Object.keys(WORDS).forEach(w => { const li = document.createElement('li'); li.textContent = w; li.dataset.word = w; wordList.appendChild(li); });
+    const cellAt = (r, c) => grid.children[r * N + c];
+    const posOf = el => ({ r: +el.dataset.r, c: +el.dataset.c });
+    function line(a, b) {
+      const dr = b.r - a.r, dc = b.c - a.c;
+      if (!(dr === 0 || dc === 0 || Math.abs(dr) === Math.abs(dc))) return null;
+      const n = Math.max(Math.abs(dr), Math.abs(dc)), sr = Math.sign(dr), sc = Math.sign(dc);
+      return Array.from({ length: n + 1 }, (_, k) => ({ r: a.r + sr * k, c: a.c + sc * k }));
+    }
+    const temp = document.createElement('div'); temp.className = 'cap temp'; temp.hidden = true; grid.appendChild(temp);
+    /* A one-time hint: a highlighter sweeps across PUZZLE when the puzzle first scrolls into view. */
+    if (!reduce) {
+      const hint = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        hint.disconnect();
+        if (found.size) return;
+        const g = document.createElement('div'); g.className = 'cap ghost';
+        placeCap(g, { r: 0, c: 0 }, { r: 0, c: 5 }, N); grid.appendChild(g);
+        g.addEventListener('animationend', () => g.remove());
+      }, { threshold: 0.6 });
+      hint.observe(grid);
+    }
+    function addCap(a, b, cls) { const el = document.createElement('div'); el.className = 'cap ' + cls; placeCap(el, a, b, N); grid.appendChild(el); }
+    let start = null, cur = null, dragging = false, anchor = null;
+    function setAnchor(p) { $$('.ws-cell.anchor', grid).forEach(e => e.classList.remove('anchor')); anchor = p; if (p) cellAt(p.r, p.c).classList.add('anchor'); }
+    function tryWord(a, b) {
+      const cells = line(a, b);
+      if (!cells) { statusEl.textContent = 'Words run in straight lines: across, down or diagonal.'; return; }
+      const s = cells.map(p => ROWS[p.r][p.c]).join(''), rev = [...s].reverse().join('');
+      const hit = Object.keys(WORDS).find(w => !found.has(w) && (w === s || w === rev));
+      if (!hit) {
+        statusEl.textContent = found.has(s) || found.has(rev) ? 'You already found that one.' : 'Not one of the words. Try another line.';
+        grid.classList.remove('shake'); void grid.offsetWidth; grid.classList.add('shake'); return;
+      }
+      found.add(hit);
+      addCap(a, b, 'found c' + (colorIx++ % 4));
+      cells.forEach((p, k) => { const el = cellAt(p.r, p.c); setTimeout(() => { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }, k * 45); });
+      $('[data-word="' + hit + '"]', wordList).classList.add('done');
+      const left = Object.keys(WORDS).length - found.size;
+      statusEl.textContent = left ? 'Found ' + hit + '! ' + left + ' to go.' : 'All 8 found! Book 1 has 100 more puzzles like this.';
+      if (!left) celebrate();
+    }
+    grid.addEventListener('pointerdown', e => {
+      const cell = e.target.closest('.ws-cell'); if (!cell) return;
+      e.preventDefault(); dragging = true; start = posOf(cell); cur = start;
+      card.classList.remove('idle');
+      try { grid.setPointerCapture(e.pointerId); } catch (_) {}
+      temp.hidden = false; placeCap(temp, start, start, N);
+    });
+    grid.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const cell = el && el.closest && el.closest('.ws-cell'); if (!cell) return;
+      const p = posOf(cell);
+      if (line(start, p)) { cur = p; placeCap(temp, start, p, N); }
+    });
+    grid.addEventListener('pointerup', () => {
+      if (!dragging) return; dragging = false; temp.hidden = true;
+      if (cur.r === start.r && cur.c === start.c) {
+        if (anchor && !(anchor.r === start.r && anchor.c === start.c)) { const a = anchor; setAnchor(null); tryWord(a, start); }
+        else if (anchor) setAnchor(null);
+        else { setAnchor(start); statusEl.textContent = 'Now tap the last letter of the word.'; }
+      } else { setAnchor(null); tryWord(start, cur); }
+    });
+    grid.addEventListener('pointercancel', () => { dragging = false; temp.hidden = true; });
+    grid.addEventListener('click', e => {
+      if (e.detail !== 0) return; /* keyboard only: Enter or Space on a letter */
+      const cell = e.target.closest('.ws-cell'); if (!cell) return;
+      const p = posOf(cell);
+      if (anchor && !(anchor.r === p.r && anchor.c === p.c)) { const a = anchor; setAnchor(null); tryWord(a, p); }
+      else { setAnchor(p); statusEl.textContent = 'Now choose the last letter of the word.'; }
+    });
+    $('#wsReveal').addEventListener('click', () => {
+      Object.entries(WORDS).forEach(([w, [a, b]]) => {
+        if (found.has(w)) return;
+        found.add(w); addCap({ r: a[0], c: a[1] }, { r: b[0], c: b[1] }, 'shown');
+        $('[data-word="' + w + '"]', wordList).classList.add('done');
+      });
+      statusEl.textContent = 'Every answer is outlined, just like the answer key in the back of the book.';
+    });
+    function celebrate() {
+      if (reduce) return;
+      const box = $('#wsConfetti'), cols = ['#F7D046', '#F59AB8', '#8EE3B0', '#9CC3F5', '#7B2FBE', '#F08A2E'];
+      for (let i = 0; i < 46; i++) {
+        const p = document.createElement('i'), ang = Math.random() * Math.PI * 2, dist = 120 + Math.random() * 200;
+        p.style.background = cols[i % cols.length];
+        p.style.setProperty('--x', Math.cos(ang) * dist + 'px'); p.style.setProperty('--y', Math.sin(ang) * dist - 60 + 'px');
+        p.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+        p.style.animationDelay = Math.random() * 120 + 'ms';
+        box.appendChild(p); setTimeout(() => p.remove(), 1800);
+      }
+    }
+
+    /* ---------- Peek inside ---------- */
+    const PAGES = {
+      'word-search': ['Large Print Word Search for Adults', [['img/book1-page5.jpg', 'Puzzle 1: In the Garden'], ['img/book1-page6.jpg', 'Puzzle 2: Kitchen Drawer']]],
+      'number-puzzles': ['Large Print Number Puzzles for Adults', [['img/book2-page5.jpg', 'Puzzle 1 (easy)'], ['img/book2-page85.jpg', 'Puzzle 81 (hard)']]],
+      'cat-word-search': ['Large Print Cat Word Search for Adults', [['img/book3-page5.jpg', 'Puzzle 1: Cat Breeds, Part One'], ['img/book3-page6.jpg', 'Puzzle 2: Cat Breeds, Part Two']]]
+    };
+    const peek = $('#peek');
+    let lastFocus = null;
+    function openPeek(id) {
+      const [title, pages] = PAGES[id]; lastFocus = document.activeElement;
+      $('#peekTitle').textContent = title;
+      $('#peekPages').innerHTML = pages.map(([src, cap]) => '<figure><img src="' + src + '" width="850" height="1100" alt="' + cap + ', a full page from the book"><figcaption>' + cap + '</figcaption></figure>').join('');
+      peek.hidden = false; $('#peekClose').focus();
+    }
+    function closePeek() { peek.hidden = true; if (lastFocus) lastFocus.focus(); }
+    $$('[data-peek]').forEach(b => b.addEventListener('click', () => openPeek(b.dataset.peek)));
+    $('#peekClose').addEventListener('click', closePeek);
+    peek.addEventListener('click', e => { if (e.target === peek) closePeek(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !peek.hidden) closePeek(); });
+  })();
+  </script>
+
+</body>
+</html>
