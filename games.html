@@ -143,6 +143,7 @@
       background: linear-gradient(90deg, #2F7A38, #8FD16A);
     }
     .nav-links a.nav-highlight:hover { color: #1F5C2A; }
+    .nav-links a.nav-books { display: inline-flex; align-items: center; gap: 6px; }
     .nav-new {
       font-size: 9px;
       font-weight: 900;
@@ -210,6 +211,7 @@
       background: #1a2744;
     }
     .game-screenshot-area.wide img { object-fit: contain; }
+    .game-screenshot-area.wide.books { background: var(--purple-tint); }
     .site-btn {
       display: inline-flex;
       align-items: center;
@@ -623,8 +625,8 @@
       .nav-inner { padding: 0 16px; }
       .nav-logo { font-size: 17px; }
       .nav-inner { flex-direction: column; gap: 8px; }
-      .nav-links { gap: 12px; justify-content: center; flex-wrap: wrap; }
-      .nav-links a { font-size: 13px; }
+      .nav-links { gap: 8px 9px; justify-content: center; flex-wrap: wrap; }
+      .nav-links a { font-size: 12px; }
       .nav-new { display: none; }
       .page-hero { padding: 124px 16px 40px; }
       .page-hero h1 { font-size: 30px; }
@@ -649,8 +651,8 @@
       .footer-col a { font-size: 13px; }
     }
     @media (max-width: 380px) {
-      .nav-links { gap: 9px; }
-      .nav-links a { font-size: 11.5px; }
+      .nav-links { gap: 6px 7px; }
+      .nav-links a { font-size: 11px; }
       .nav-logo { font-size: 15px; }
       .page-hero { padding: 116px 12px 32px; }
       .page-hero h1 { font-size: 26px; }
@@ -670,6 +672,7 @@
         <li><a href="index.html#about">About</a></li>
         <li><a href="games.html" class="active">Games</a></li>
         <li><a href="word-meadow/index.html" class="nav-highlight">Word Meadow<span class="nav-new">New</span></a></li>
+        <li><a href="puzzle-books/index.html" class="nav-books">Puzzle Books<span class="nav-new">New</span></a></li>
         <li><a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener">Merch</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
@@ -842,6 +845,37 @@
     </div>
   </section>
 
+  <!-- PUZZLE BOOKS -->
+  <section class="game-feature alt" id="puzzle-books">
+    <div class="game-inner reverse animate">
+      <div class="game-visual">
+        <a href="puzzle-books/index.html" class="game-screenshot-area wide books" aria-label="Clear Page Puzzles books">
+          <img src="puzzle-books/img/share.jpg" alt="The three Clear Page Puzzles books: Large Print Word Search, Number Puzzles and Cat Word Search for Adults" width="1200" height="630" loading="lazy">
+        </a>
+      </div>
+      <div class="game-info">
+        <span class="game-badge">New from Grobe Games</span>
+        <h2>Clear Page Puzzles</h2>
+        <p class="game-tagline">Puzzle books in big, clear print.</p>
+        <p class="game-description">
+          Three large-print paperback puzzle books for grown-ups: word search, 9 by 9 number puzzles
+          and a whole book of cats. One puzzle per page, with every answer in the back.
+        </p>
+        <ul class="game-features">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Bold 24-point letters and 34-point numbers
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B2FBE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Coming soon to Amazon
+          </li>
+        </ul>
+        <a href="puzzle-books/index.html" class="game-cta">See the puzzle books</a>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer id="contact">
     <div class="footer-inner">
@@ -852,6 +886,7 @@
           <span class="footer-col-title">Explore</span>
           <a href="index.html">Home</a>
           <a href="games.html">Games</a>
+          <a href="puzzle-books/index.html">Puzzle Books</a>
           <a href="https://grobe-games-llc-shop.fourthwall.com" target="_blank" rel="noopener">Merch Store</a>
         </div>
         <div class="footer-col">
